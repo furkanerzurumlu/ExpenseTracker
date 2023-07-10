@@ -9,18 +9,17 @@ import UIKit
 
 struct Category {
     let title: String
-    // Diğer kategori özelliklerini burada tanımlayabilirsiniz
 }
 let categories: [Category] = [
-    Category(title: "Kategori 1"),
-    Category(title: "Kategori 2"),
-    Category(title: "Kategori 1"),
-    Category(title: "Kategori 2"),
-    Category(title: "Kategori 1"),
-    Category(title: "Kategori 2"),
-    Category(title: "Kategori 1"),
-    Category(title: "Kategori 2"),
-    // Diğer kategorileri burada ekleyin
+    Category(title: "Donation"),
+    Category(title: "Food"),
+    Category(title: "Entertainment"),
+    Category(title: "Health"),
+    Category(title: "Shopping"),
+    Category(title: "Transportion"),
+    Category(title: "Utilities"),
+    Category(title: "Other"),
+    
 ]
 
 class LogsFlow: UIViewController {
@@ -30,33 +29,28 @@ class LogsFlow: UIViewController {
         super.viewDidLoad()
         
         setNavigationContreoller()
+        setTabCollectionView()
         
+    }
+    private func setTabCollectionView(){
         tabCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         tabCollectionView.showsHorizontalScrollIndicator = false
         tabCollectionView.dataSource = self
         tabCollectionView.delegate = self
         
         if let flowLayout = tabCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.itemSize = CGSize(width: 100, height: 50) // Örneğin
+            flowLayout.itemSize = CGSize(width: 100, height: 50)
         }
-
-        
-//        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-////            flowLayout.scrollDirection = .horizontal
-//            flowLayout.minimumInteritemSpacing = 10
-//            flowLayout.minimumLineSpacing = 10
-//        }
-
     }
     
-    func setNavigationContreoller(){
+    private func setNavigationContreoller(){
         navigationItem.title = "Expense Logs"
         let rightButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = rightButton
     }
     
     @objc func saveButtonTapped() {
-        // Butona tıklandığında yapılacak işlemler
+        
         print("Kaydet butonuna tıklandı!")
     }
 
@@ -83,9 +77,20 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         
         return cell
     }
-    
+   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 40)
+        let category = categories[indexPath.item]
+        let titleWidth = calculateLabelWidth(text: category.title) + 20
+        return CGSize(width: titleWidth + 30, height: 40)
+        
+        //return CGSize(width: 100, height: 40)
+    }
+    
+    private func calculateLabelWidth(text: String) -> CGFloat {
+        let label = UILabel()
+        label.text = text
+        label.sizeToFit()
+        return label.frame.width
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
