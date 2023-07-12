@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC73658C2A5B44A90030A5DF /* LogsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC73658B2A5B44A90030A5DF /* LogsFlow.swift */; };
 		DC73658F2A5B52F40030A5DF /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC73658E2A5B52F40030A5DF /* CategoryCollectionViewCell.swift */; };
+		DC7365922A5EDBE20030A5DF /* EditExpenseLogFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7365912A5EDBE20030A5DF /* EditExpenseLogFlow.swift */; };
 		DCC5B64A2A5B32FB0087B9E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B6492A5B32FB0087B9E0 /* AppDelegate.swift */; };
 		DCC5B64C2A5B32FB0087B9E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B64B2A5B32FB0087B9E0 /* SceneDelegate.swift */; };
 		DCC5B64E2A5B32FB0087B9E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B64D2A5B32FB0087B9E0 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		DC73658B2A5B44A90030A5DF /* LogsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsFlow.swift; sourceTree = "<group>"; };
 		DC73658E2A5B52F40030A5DF /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		DC7365912A5EDBE20030A5DF /* EditExpenseLogFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseLogFlow.swift; sourceTree = "<group>"; };
 		DCC5B6462A5B32FB0087B9E0 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC5B6492A5B32FB0087B9E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC5B64B2A5B32FB0087B9E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				DC7365872A5B34440030A5DF /* DashboardFlow */,
 				DC73658A2A5B37D10030A5DF /* LogsFlow */,
+				DC7365902A5EDB930030A5DF /* EditExpenseLogFlow */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -126,6 +129,14 @@
 				DC73658E2A5B52F40030A5DF /* CategoryCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		DC7365902A5EDB930030A5DF /* EditExpenseLogFlow */ = {
+			isa = PBXGroup;
+			children = (
+				DC7365912A5EDBE20030A5DF /* EditExpenseLogFlow.swift */,
+			);
+			path = EditExpenseLogFlow;
 			sourceTree = "<group>";
 		};
 		DCC5B63D2A5B32FB0087B9E0 = {
@@ -312,6 +323,7 @@
 				DCC5B64A2A5B32FB0087B9E0 /* AppDelegate.swift in Sources */,
 				DCC5B64C2A5B32FB0087B9E0 /* SceneDelegate.swift in Sources */,
 				DC73658F2A5B52F40030A5DF /* CategoryCollectionViewCell.swift in Sources */,
+				DC7365922A5EDBE20030A5DF /* EditExpenseLogFlow.swift in Sources */,
 				DCC5B6542A5B32FB0087B9E0 /* ExpenseTracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

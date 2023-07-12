@@ -66,8 +66,8 @@ class LogsFlow: UIViewController {
     }
     
     @objc func saveButtonTapped() {
-        
-        print("Kaydet butonuna tıklandı!")
+        performSegue(withIdentifier: "showEditFlow", sender: nil)
+        print("Go Edit Flow")
     }
     
 }
