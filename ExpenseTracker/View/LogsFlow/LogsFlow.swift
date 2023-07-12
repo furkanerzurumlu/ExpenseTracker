@@ -25,15 +25,31 @@ let categories: [Category] = [
 class LogsFlow: UIViewController {
     @IBOutlet weak var tabCollectionView: UICollectionView!
     
+    @IBOutlet weak var segmentView: UIStackView!
+    
+    @IBOutlet weak var itemTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNavigationContreoller()
         setTabCollectionView()
         
+        itemTableView.layer.borderWidth = 0.3
+        itemTableView.layer.borderColor = UIColor.gray.cgColor
+
+
     }
+    
+    
     private func setTabCollectionView(){
         tabCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        
+        let bottomBorder = CALayer()
+        bottomBorder.backgroundColor = UIColor.gray.cgColor
+        bottomBorder.frame = CGRect(x: 0, y: tabCollectionView.bounds.height - 1, width: tabCollectionView.bounds.width, height: 0.3)
+        tabCollectionView.layer.addSublayer(bottomBorder)
+        
         tabCollectionView.showsHorizontalScrollIndicator = false
         tabCollectionView.dataSource = self
         tabCollectionView.delegate = self
@@ -53,7 +69,7 @@ class LogsFlow: UIViewController {
         
         print("Kaydet butonuna tıklandı!")
     }
-
+    
 }
 
 extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
@@ -77,7 +93,7 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         
         return cell
     }
-   
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let category = categories[indexPath.item]
         let titleWidth = calculateLabelWidth(text: category.title) + 20
@@ -101,3 +117,6 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }
+
+
+
