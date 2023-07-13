@@ -230,6 +230,9 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="ss4-ee-qlB"/>
+                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gM-gD-Iti">
                                         <rect key="frame" x="0.0" y="102" width="360" height="50"/>
@@ -260,6 +263,10 @@
                     <navigationItem key="navigationItem" id="2Ms-3E-wmL"/>
                     <connections>
                         <outlet property="categoryTextField" destination="J6l-Jq-55j" id="IPd-5w-eKr"/>
+                        <outlet property="priceTextField" destination="lDA-8m-NxJ" id="GOw-e2-Ift"/>
+                        <outlet property="priceView" destination="yYA-jJ-N7Z" id="Xa3-Vg-e6f"/>
+                        <outlet property="spendingTitleTextField" destination="R1R-Pw-tLv" id="814-61-HxY"/>
+                        <outlet property="spendingView" destination="7E4-38-GUF" id="gGu-W1-caG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hbE-D9-KXC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

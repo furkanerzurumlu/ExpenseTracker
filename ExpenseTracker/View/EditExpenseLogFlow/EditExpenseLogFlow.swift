@@ -9,12 +9,15 @@ import UIKit
 
 class EditExpenseLogFlow: UIViewController {
     
+    @IBOutlet weak var spendingTitleTextField: UITextField!
+    @IBOutlet weak var spendingView: UIStackView!
+    @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var priceView: UIStackView!
     @IBOutlet weak var categoryTextField: UITextField!
     let pickerView = UIPickerView()
     let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities"]
     
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewController()
@@ -23,8 +26,15 @@ class EditExpenseLogFlow: UIViewController {
         
         pickerView.delegate = self
         pickerView.dataSource = self
-        
         categoryTextField.inputView = pickerView
+        
+        //spendingTitleTextField.tintColor = .clear
+        spendingTitleTextField.borderStyle = .none
+        priceView.layer.borderColor = UIColor.gray.cgColor
+        priceView.layer.borderWidth = 0.3
+        
+        
+        priceTextField.borderStyle = .none
         
         categoryTextField.placeholder = "Selected"
         categoryTextField.attributedPlaceholder = NSAttributedString(string: "Selected", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemBlue])
@@ -46,6 +56,7 @@ class EditExpenseLogFlow: UIViewController {
     
     @objc func cancelButtonTapped(){
         print("Cancel succesful")
+        dismiss(animated: true, completion: nil)
     }
     func rightSaveButton(){
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
