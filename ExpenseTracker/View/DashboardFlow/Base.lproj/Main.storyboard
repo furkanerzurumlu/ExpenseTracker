@@ -224,9 +224,9 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J6l-Jq-55j">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J6l-Jq-55j">
                                                 <rect key="frame" x="180" y="0.0" width="180" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -263,6 +263,7 @@
                     <navigationItem key="navigationItem" id="2Ms-3E-wmL"/>
                     <connections>
                         <outlet property="categoryTextField" destination="J6l-Jq-55j" id="IPd-5w-eKr"/>
+                        <outlet property="datePicker" destination="0J6-UY-RJ1" id="MJh-K2-TDl"/>
                         <outlet property="priceTextField" destination="lDA-8m-NxJ" id="GOw-e2-Ift"/>
                         <outlet property="priceView" destination="yYA-jJ-N7Z" id="Xa3-Vg-e6f"/>
                         <outlet property="spendingTitleTextField" destination="R1R-Pw-tLv" id="814-61-HxY"/>

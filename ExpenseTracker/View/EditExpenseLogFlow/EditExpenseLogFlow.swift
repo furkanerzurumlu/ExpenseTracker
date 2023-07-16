@@ -14,10 +14,12 @@ class EditExpenseLogFlow: UIViewController {
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var priceView: UIStackView!
     @IBOutlet weak var categoryTextField: UITextField!
-    let pickerView = UIPickerView()
-    let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities"]
+    @IBOutlet weak var datePicker: UIDatePicker!
     
-
+    let datePickerView = UIDatePicker()
+    let pickerView = UIPickerView()
+    let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities","Other"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewController()
@@ -28,11 +30,20 @@ class EditExpenseLogFlow: UIViewController {
         pickerView.dataSource = self
         categoryTextField.inputView = pickerView
         
+        datePicker.datePickerMode = .date
+        
         //spendingTitleTextField.tintColor = .clear
         spendingTitleTextField.borderStyle = .none
         priceView.layer.borderColor = UIColor.gray.cgColor
         priceView.layer.borderWidth = 0.3
         
+        categoryTextField.inputView = pickerView
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(selectButtonTapped))
+        toolbar.setItems([flexibleSpace,doneButton], animated: false)
+        categoryTextField.inputAccessoryView = toolbar
         
         priceTextField.borderStyle = .none
         
@@ -42,14 +53,20 @@ class EditExpenseLogFlow: UIViewController {
         categoryTextField.textColor = .systemBlue
         categoryTextField.borderStyle = .none
     }
-  
+    @objc func selectButtonTapped(){
+        let selecetRow = pickerView.selectedRow(inComponent: 0)
+        let selecetCategory = categoryOptions[selecetRow]
+        
+        categoryTextField.text = selecetCategory
+        categoryTextField.resignFirstResponder()
+    }
     private func setViewController(){
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Edit Exponse Log"
     }
     
-    func leftCancelButton(){
+    private func leftCancelButton(){
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelButtonTapped))
         navigationItem.leftBarButtonItem = cancelButton
     }
@@ -58,7 +75,7 @@ class EditExpenseLogFlow: UIViewController {
         print("Cancel succesful")
         dismiss(animated: true, completion: nil)
     }
-    func rightSaveButton(){
+    private func rightSaveButton(){
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = saveButton
     }
@@ -86,7 +103,9 @@ extension EditExpenseLogFlow: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCategory = categoryOptions[row]
-        categoryTextField.text = selectedCategory
-        categoryTextField.resignFirstResponder()
+//        categoryTextField.text = selectedCategory
+//        categoryTextField.resignFirstResponder()
     }
 }
+
+
