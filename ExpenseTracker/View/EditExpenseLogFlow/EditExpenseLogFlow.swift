@@ -14,11 +14,12 @@ class EditExpenseLogFlow: UIViewController {
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var priceView: UIStackView!
     @IBOutlet weak var categoryTextField: UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateTextField: UITextField!
     
-    let datePickerView = UIDatePicker()
-    let pickerView = UIPickerView()
-    let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities","Other"]
+    private var datePicker = UIDatePicker()
+    private let pickerView = UIPickerView()
+    private let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities","Other"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,54 +29,44 @@ class EditExpenseLogFlow: UIViewController {
         
         setCategorySelectedTextField()
         setPriceTextField()
-        setDatePicker()
+        
+        createDatePicker()
         
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        
-        
-        //spendingTitleTextField.tintColor = .clear
         spendingTitleTextField.borderStyle = .none
         
         
-        //categoryTextField.inputView = pickerView
         
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(selectButtonTapped))
-        toolbar.setItems([flexibleSpace,doneButton], animated: false)
-        categoryTextField.inputAccessoryView = toolbar
+    }
+    func createToolbar() -> UIToolbar {
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
         
+        //done button
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneButton], animated: true)
         
+        return toolbar
+    }
+    func createDatePicker(){
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        dateTextField.inputView = datePicker
+        dateTextField.inputAccessoryView = createToolbar()
     }
     
-   
-    private func setDatePicker(){
-        datePickerView.datePickerMode = .date
-        datePickerView.preferredDatePickerStyle = .wheels
+    @objc func donePressed(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
         
-        datePickerView.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.height - 44, height: 44))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
-        toolbar.items = [flexibleSpace, doneButton]
-        
-        view.addSubview(datePickerView)
-        view.addSubview(toolbar)
+        self.dateTextField.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
     }
     
-    @objc func dateChanged(_ sender: UIDatePicker) {
-        let selectedDate = sender.date
-        // Seçilen tarihe göre işlemleri gerçekleştir
-    }
-    
-    @objc func doneButtonTapped() {
-        let selectedDate = datePicker.date
-        // Seçilen tarihe göre işlemleri gerçekleştir
-    }
-
     private func setPriceTextField(){
         priceView.layer.borderColor = UIColor.gray.cgColor
         priceView.layer.borderWidth = 0.3
@@ -91,6 +82,12 @@ class EditExpenseLogFlow: UIViewController {
         categoryTextField.tintColor = .clear
         categoryTextField.textColor = .systemBlue
         categoryTextField.borderStyle = .none
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(selectButtonTapped))
+        toolbar.setItems([flexibleSpace,doneButton], animated: false)
+        categoryTextField.inputAccessoryView = toolbar
     }
     
     @objc func selectButtonTapped(){
