@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct Category {
     let title: String
@@ -23,21 +24,24 @@ let categories: [Category] = [
 ]
 
 class LogsFlow: UIViewController {
+    
     @IBOutlet weak var tabCollectionView: UICollectionView!
-    
     @IBOutlet weak var segmentView: UIStackView!
-    
     @IBOutlet weak var itemTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
+        request.returnsObjectsAsFaults = false
         
         setNavigationContreoller()
         setTabCollectionView()
         
         itemTableView.layer.borderWidth = 0.3
         itemTableView.layer.borderColor = UIColor.gray.cgColor
-
 
     }
     

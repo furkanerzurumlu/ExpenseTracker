@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
 class EditExpenseLogFlow: UIViewController {
     
-    @IBOutlet weak var spendingTitleTextField: UITextField!
+    @IBOutlet weak var porductNameTextField: UITextField!
     @IBOutlet weak var spendingView: UIStackView!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var priceView: UIStackView!
@@ -23,6 +24,13 @@ class EditExpenseLogFlow: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
+        
+        newExpense.setValue(porductNameTextField.text, forKey: "product")
+        
         setViewController()
         rightSaveButton()
         leftCancelButton()
@@ -31,15 +39,41 @@ class EditExpenseLogFlow: UIViewController {
         setPriceTextField()
         
         createDatePicker()
+        setPriceTextfield()
         
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        spendingTitleTextField.borderStyle = .none
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/mm/yyyy"
+        let toDay = Date()
+        let todayFormatted = dateFormatter.string(from: toDay)
+        dateTextField.text = todayFormatted
         
-        
+        porductNameTextField.borderStyle = .none
+        porductNameTextField.placeholder = "Enter Expense"
+
+        dateTextField.tintColor = .clear
+        dateTextField.textColor = .systemBlue
+        dateTextField.borderStyle = .none
         
     }
+    func setPriceTextfield(){
+        let dolarLabel = UILabel()
+        dolarLabel.text = "$"
+        dolarLabel.font = UIFont.systemFont(ofSize: 22)
+        dolarLabel.sizeToFit()
+        priceTextField.leftView = dolarLabel
+        priceTextField.leftViewMode = .always
+        
+        priceTextField.tintColor = .clear
+        priceTextField.borderStyle = .none
+        
+        priceTextField.delegate = self
+        priceTextField.keyboardType = .numberPad
+        
+    }
+    
     func createToolbar() -> UIToolbar {
         //toolbar
         let toolbar = UIToolbar()
@@ -59,12 +93,15 @@ class EditExpenseLogFlow: UIViewController {
     }
     
     @objc func donePressed(){
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         
         self.dateTextField.text = dateFormatter.string(from: datePicker.date)
+        
         self.view.endEditing(true)
+        
     }
     
     private func setPriceTextField(){
@@ -122,7 +159,6 @@ class EditExpenseLogFlow: UIViewController {
         print("Save succesful")
     }
     
-    
 }
 
 extension EditExpenseLogFlow: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -134,8 +170,6 @@ extension EditExpenseLogFlow: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return categoryOptions.count
-        
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -154,8 +188,13 @@ extension EditExpenseLogFlow: UIPickerViewDelegate, UIPickerViewDataSource {
         print("Selected Category = \(selectedCategory)")
         
         
-        
     }
 }
 
-
+extension EditExpenseLogFlow: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharecters = CharacterSet(charactersIn: "0123456789")
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharecters.isSuperset(of: characterSet)
+    }
+}

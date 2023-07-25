@@ -243,7 +243,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HDF-Wh-Dj7">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HDF-Wh-Dj7">
                                                 <rect key="frame" x="36" y="0.0" width="324" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -266,9 +266,9 @@
                     <connections>
                         <outlet property="categoryTextField" destination="J6l-Jq-55j" id="IPd-5w-eKr"/>
                         <outlet property="dateTextField" destination="HDF-Wh-Dj7" id="B9u-rg-Oe3"/>
+                        <outlet property="porductNameTextField" destination="R1R-Pw-tLv" id="814-61-HxY"/>
                         <outlet property="priceTextField" destination="lDA-8m-NxJ" id="GOw-e2-Ift"/>
                         <outlet property="priceView" destination="yYA-jJ-N7Z" id="Xa3-Vg-e6f"/>
-                        <outlet property="spendingTitleTextField" destination="R1R-Pw-tLv" id="814-61-HxY"/>
                         <outlet property="spendingView" destination="7E4-38-GUF" id="gGu-W1-caG"/>
                     </connections>
                 </viewController>
