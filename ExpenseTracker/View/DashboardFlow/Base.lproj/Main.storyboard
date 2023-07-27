@@ -266,9 +266,9 @@
                     <connections>
                         <outlet property="categoryTextField" destination="J6l-Jq-55j" id="IPd-5w-eKr"/>
                         <outlet property="dateTextField" destination="HDF-Wh-Dj7" id="B9u-rg-Oe3"/>
-                        <outlet property="porductNameTextField" destination="R1R-Pw-tLv" id="814-61-HxY"/>
                         <outlet property="priceTextField" destination="lDA-8m-NxJ" id="GOw-e2-Ift"/>
                         <outlet property="priceView" destination="yYA-jJ-N7Z" id="Xa3-Vg-e6f"/>
+                        <outlet property="productNameTextField" destination="R1R-Pw-tLv" id="814-61-HxY"/>
                         <outlet property="spendingView" destination="7E4-38-GUF" id="gGu-W1-caG"/>
                     </connections>
                 </viewController>

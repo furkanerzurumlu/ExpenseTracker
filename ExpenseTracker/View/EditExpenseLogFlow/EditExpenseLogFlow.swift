@@ -10,7 +10,7 @@ import CoreData
 
 class EditExpenseLogFlow: UIViewController {
     
-    @IBOutlet weak var porductNameTextField: UITextField!
+    @IBOutlet weak var productNameTextField: UITextField!
     @IBOutlet weak var spendingView: UIStackView!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var priceView: UIStackView!
@@ -22,14 +22,15 @@ class EditExpenseLogFlow: UIViewController {
     private let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities","Other"]
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = appDelegate.persistentContainer.viewContext
+//        let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
         
-        newExpense.setValue(porductNameTextField.text, forKey: "product")
+        
         
         setViewController()
         rightSaveButton()
@@ -50,9 +51,9 @@ class EditExpenseLogFlow: UIViewController {
         let todayFormatted = dateFormatter.string(from: toDay)
         dateTextField.text = todayFormatted
         
-        porductNameTextField.borderStyle = .none
-        porductNameTextField.placeholder = "Enter Expense"
-
+        productNameTextField.borderStyle = .none
+        productNameTextField.placeholder = "Enter Expense"
+        
         dateTextField.tintColor = .clear
         dateTextField.textColor = .systemBlue
         dateTextField.borderStyle = .none
@@ -153,10 +154,29 @@ class EditExpenseLogFlow: UIViewController {
     private func rightSaveButton(){
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = saveButton
+        
     }
     
     @objc func saveButtonTapped() {
         print("Save succesful")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let saveData = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
+        
+        // save all data
+        saveData.setValue(UUID(), forKey: "id")
+        //saveData.setValue(priceTextField.text!, forKey: "price")
+        saveData.setValue(productNameTextField.text!, forKey: "product")
+        
+        do {
+            try context.save()
+            print("Data Save Done")
+        } catch {
+            print("Error")
+        }
+        
+        
+        dismiss(animated: true, completion: nil)
     }
     
 }

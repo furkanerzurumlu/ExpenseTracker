@@ -29,22 +29,51 @@ class LogsFlow: UIViewController {
     @IBOutlet weak var segmentView: UIStackView!
     @IBOutlet weak var itemTableView: UITableView!
     
+    var productNameArray = [String]()
+    var idArray = [UUID]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
-        request.returnsObjectsAsFaults = false
+        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //        let context = appDelegate.persistentContainer.viewContext
+        //        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
+        //        request.returnsObjectsAsFaults = false
         
         setNavigationContreoller()
         setTabCollectionView()
         
+        getData()
+        
+        itemTableView.dataSource = self
+        itemTableView.delegate = self
+        
         itemTableView.layer.borderWidth = 0.3
         itemTableView.layer.borderColor = UIColor.gray.cgColor
-
+        
     }
-    
+    func getData(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        
+        do{
+            let results = try context.fetch(fetchRequest)
+            for resut in results as! [NSManagedObject]{
+                
+                if let product = resut.value(forKey: "product") as? String {
+                    self.productNameArray.append(product)
+                }
+                if let id = resut.value(forKey: "id") as? UUID {
+                    self.idArray.append(id)
+                }
+            }
+        } catch {
+            
+        }
+    }
     
     private func setTabCollectionView(){
         tabCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
@@ -122,5 +151,19 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     }
 }
 
+extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return idArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = productNameArray[indexPath.row]
+        return cell
+    }
+    
+    
+}
 
 
