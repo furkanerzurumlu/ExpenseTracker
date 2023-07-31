@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+// MARK: Category Variables
 struct Category {
     let title: String
 }
@@ -25,6 +26,7 @@ let categories: [Category] = [
 
 class LogsFlow: UIViewController {
     
+    // MARK: All Variables
     @IBOutlet weak var tabCollectionView: UICollectionView!
     @IBOutlet weak var segmentView: UIStackView!
     @IBOutlet weak var itemTableView: UITableView!
@@ -40,7 +42,7 @@ class LogsFlow: UIViewController {
         //        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
         //        request.returnsObjectsAsFaults = false
         
-        setNavigationContreoller()
+        setNavigationController()
         setTabCollectionView()
         
         getData()
@@ -52,12 +54,17 @@ class LogsFlow: UIViewController {
         itemTableView.layer.borderColor = UIColor.gray.cgColor
         
     }
-    func getData(){
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("rawValue"), object: nil)
+    }
+    
+    // MARK: CoreData Fetch Proccess
+    @objc func getData(){
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
         fetchRequest.returnsObjectsAsFaults = false
-        
         
         do{
             let results = try context.fetch(fetchRequest)
@@ -69,12 +76,14 @@ class LogsFlow: UIViewController {
                 if let id = resut.value(forKey: "id") as? UUID {
                     self.idArray.append(id)
                 }
+                itemTableView.reloadData()
             }
         } catch {
             
         }
     }
     
+    // MARK: Set ColletionView
     private func setTabCollectionView(){
         tabCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         
@@ -92,7 +101,8 @@ class LogsFlow: UIViewController {
         }
     }
     
-    private func setNavigationContreoller(){
+    // MARK: Set Navigation Controller
+    private func setNavigationController(){
         navigationItem.title = "Expense Logs"
         let rightButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = rightButton
@@ -105,6 +115,7 @@ class LogsFlow: UIViewController {
     
 }
 
+// MARK: Category CollectionView Extension
 extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
@@ -151,6 +162,7 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     }
 }
 
+// MARK: ItemTableView Extension
 extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

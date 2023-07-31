@@ -10,6 +10,7 @@ import CoreData
 
 class EditExpenseLogFlow: UIViewController {
     
+    // MARK: All Veriables
     @IBOutlet weak var productNameTextField: UITextField!
     @IBOutlet weak var spendingView: UIStackView!
     @IBOutlet weak var priceTextField: UITextField!
@@ -26,9 +27,9 @@ class EditExpenseLogFlow: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let context = appDelegate.persistentContainer.viewContext
-//        let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
+        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //        let context = appDelegate.persistentContainer.viewContext
+        //        let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
         
         
         
@@ -40,7 +41,6 @@ class EditExpenseLogFlow: UIViewController {
         setPriceTextField()
         
         createDatePicker()
-        setPriceTextfield()
         
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -59,7 +59,45 @@ class EditExpenseLogFlow: UIViewController {
         dateTextField.borderStyle = .none
         
     }
-    func setPriceTextfield(){
+    
+    // MARK: Set DatePicker
+    func createToolbar() -> UIToolbar {
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //done button
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneButton], animated: true)
+        
+        return toolbar
+    }
+    
+    func createDatePicker(){
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        dateTextField.inputView = datePicker
+        dateTextField.inputAccessoryView = createToolbar()
+    }
+    
+    @objc func donePressed(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        self.dateTextField.text = dateFormatter.string(from: datePicker.date)
+        
+        self.view.endEditing(true)
+        
+    }
+    
+    // MARK: Select Price Action
+    private func setPriceTextField(){
+        priceView.layer.borderColor = UIColor.gray.cgColor
+        priceView.layer.borderWidth = 0.3
+        
+        priceTextField.borderStyle = .none
+        
         let dolarLabel = UILabel()
         dolarLabel.text = "$"
         dolarLabel.font = UIFont.systemFont(ofSize: 22)
@@ -72,48 +110,10 @@ class EditExpenseLogFlow: UIViewController {
         
         priceTextField.delegate = self
         priceTextField.keyboardType = .numberPad
-        
     }
     
-    func createToolbar() -> UIToolbar {
-        //toolbar
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        //done button
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-        toolbar.setItems([doneButton], animated: true)
-        
-        return toolbar
-    }
-    func createDatePicker(){
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.datePickerMode = .date
-        dateTextField.inputView = datePicker
-        dateTextField.inputAccessoryView = createToolbar()
-    }
-    
-    @objc func donePressed(){
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        self.dateTextField.text = dateFormatter.string(from: datePicker.date)
-        
-        self.view.endEditing(true)
-        
-    }
-    
-    private func setPriceTextField(){
-        priceView.layer.borderColor = UIColor.gray.cgColor
-        priceView.layer.borderWidth = 0.3
-        
-        priceTextField.borderStyle = .none
-        
-    }
+    // MARK: Select Category Action
     private func setCategorySelectedTextField(){
-        
         categoryTextField.inputView = pickerView
         categoryTextField.placeholder = "Selected"
         categoryTextField.attributedPlaceholder = NSAttributedString(string: "Selected", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemBlue])
@@ -136,12 +136,15 @@ class EditExpenseLogFlow: UIViewController {
         categoryTextField.resignFirstResponder()
         print(selecetCategory)
     }
+    
+    // MARK: Set ViewController Function
     private func setViewController(){
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Edit Exponse Log"
     }
     
+    // MARK: Cancel Button Action
     private func leftCancelButton(){
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelButtonTapped))
         navigationItem.leftBarButtonItem = cancelButton
@@ -151,12 +154,13 @@ class EditExpenseLogFlow: UIViewController {
         print("Cancel succesful")
         dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: Save Button Action
     private func rightSaveButton(){
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = saveButton
         
     }
-    
     @objc func saveButtonTapped() {
         print("Save succesful")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -174,13 +178,14 @@ class EditExpenseLogFlow: UIViewController {
         } catch {
             print("Error")
         }
-        
-        
+        NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
+        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
 }
 
+// MARK: Category Picker View
 extension EditExpenseLogFlow: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -211,6 +216,7 @@ extension EditExpenseLogFlow: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
+// MARK: TextField Extension
 extension EditExpenseLogFlow: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowedCharecters = CharacterSet(charactersIn: "0123456789")
