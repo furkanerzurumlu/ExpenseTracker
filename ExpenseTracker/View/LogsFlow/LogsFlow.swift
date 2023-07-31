@@ -55,7 +55,8 @@ class LogsFlow: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("rawValue"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
+        
     }
     
     // MARK: CoreData Fetch Proccess
@@ -76,7 +77,7 @@ class LogsFlow: UIViewController {
                 if let id = resut.value(forKey: "id") as? UUID {
                     self.idArray.append(id)
                 }
-                itemTableView.reloadData()
+                self.itemTableView.reloadData()
             }
         } catch {
             
