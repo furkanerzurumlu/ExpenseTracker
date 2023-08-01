@@ -10,6 +10,11 @@
 		DC73658C2A5B44A90030A5DF /* LogsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC73658B2A5B44A90030A5DF /* LogsFlow.swift */; };
 		DC73658F2A5B52F40030A5DF /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC73658E2A5B52F40030A5DF /* CategoryCollectionViewCell.swift */; };
 		DC7365922A5EDBE20030A5DF /* EditExpenseLogFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7365912A5EDBE20030A5DF /* EditExpenseLogFlow.swift */; };
+		DC9DE22A2A77FB51002E20F1 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE2282A77FB51002E20F1 /* ItemCell.swift */; };
+		DC9DE22B2A77FB51002E20F1 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9DE2292A77FB51002E20F1 /* ItemCell.xib */; };
+		DC9DE22E2A782E3F002E20F1 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE22D2A782E3F002E20F1 /* ItemModel.swift */; };
+		DC9DE2312A782F02002E20F1 /* LogsFlowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE2302A782F02002E20F1 /* LogsFlowVM.swift */; };
+		DC9DE2332A78602D002E20F1 /* EditExpenseLogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE2322A78602D002E20F1 /* EditExpenseLogVM.swift */; };
 		DCC5B64A2A5B32FB0087B9E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B6492A5B32FB0087B9E0 /* AppDelegate.swift */; };
 		DCC5B64C2A5B32FB0087B9E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B64B2A5B32FB0087B9E0 /* SceneDelegate.swift */; };
 		DCC5B64E2A5B32FB0087B9E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B64D2A5B32FB0087B9E0 /* ViewController.swift */; };
@@ -43,6 +48,11 @@
 		DC73658B2A5B44A90030A5DF /* LogsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsFlow.swift; sourceTree = "<group>"; };
 		DC73658E2A5B52F40030A5DF /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC7365912A5EDBE20030A5DF /* EditExpenseLogFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseLogFlow.swift; sourceTree = "<group>"; };
+		DC9DE2282A77FB51002E20F1 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		DC9DE2292A77FB51002E20F1 /* ItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
+		DC9DE22D2A782E3F002E20F1 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		DC9DE2302A782F02002E20F1 /* LogsFlowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsFlowVM.swift; sourceTree = "<group>"; };
+		DC9DE2322A78602D002E20F1 /* EditExpenseLogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseLogVM.swift; sourceTree = "<group>"; };
 		DCC5B6462A5B32FB0087B9E0 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC5B6492A5B32FB0087B9E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC5B64B2A5B32FB0087B9E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,8 +127,10 @@
 		DC73658A2A5B37D10030A5DF /* LogsFlow */ = {
 			isa = PBXGroup;
 			children = (
-				DC73658D2A5B52B00030A5DF /* CollectionViewCell */,
 				DC73658B2A5B44A90030A5DF /* LogsFlow.swift */,
+				DC9DE2302A782F02002E20F1 /* LogsFlowVM.swift */,
+				DC9DE2272A77FB1C002E20F1 /* ItemTableViewCell */,
+				DC73658D2A5B52B00030A5DF /* CollectionViewCell */,
 			);
 			path = LogsFlow;
 			sourceTree = "<group>";
@@ -135,8 +147,26 @@
 			isa = PBXGroup;
 			children = (
 				DC7365912A5EDBE20030A5DF /* EditExpenseLogFlow.swift */,
+				DC9DE2322A78602D002E20F1 /* EditExpenseLogVM.swift */,
 			);
 			path = EditExpenseLogFlow;
+			sourceTree = "<group>";
+		};
+		DC9DE2272A77FB1C002E20F1 /* ItemTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DC9DE2282A77FB51002E20F1 /* ItemCell.swift */,
+				DC9DE2292A77FB51002E20F1 /* ItemCell.xib */,
+			);
+			path = ItemTableViewCell;
+			sourceTree = "<group>";
+		};
+		DC9DE22C2A782E07002E20F1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC9DE22D2A782E3F002E20F1 /* ItemModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DCC5B63D2A5B32FB0087B9E0 = {
@@ -162,6 +192,7 @@
 		DCC5B6482A5B32FB0087B9E0 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DC9DE22C2A782E07002E20F1 /* Model */,
 				DC7365862A5B34310030A5DF /* View */,
 				DC7365882A5B345D0030A5DF /* Other */,
 				DCC5B65A2A5B32FC0087B9E0 /* Info.plist */,
@@ -291,6 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9DE22B2A77FB51002E20F1 /* ItemCell.xib in Resources */,
 				DCC5B6592A5B32FC0087B9E0 /* LaunchScreen.storyboard in Resources */,
 				DCC5B6562A5B32FC0087B9E0 /* Assets.xcassets in Resources */,
 				DCC5B6512A5B32FB0087B9E0 /* Main.storyboard in Resources */,
@@ -318,9 +350,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9DE2332A78602D002E20F1 /* EditExpenseLogVM.swift in Sources */,
+				DC9DE22E2A782E3F002E20F1 /* ItemModel.swift in Sources */,
+				DC9DE22A2A77FB51002E20F1 /* ItemCell.swift in Sources */,
 				DCC5B64E2A5B32FB0087B9E0 /* ViewController.swift in Sources */,
 				DC73658C2A5B44A90030A5DF /* LogsFlow.swift in Sources */,
 				DCC5B64A2A5B32FB0087B9E0 /* AppDelegate.swift in Sources */,
+				DC9DE2312A782F02002E20F1 /* LogsFlowVM.swift in Sources */,
 				DCC5B64C2A5B32FB0087B9E0 /* SceneDelegate.swift in Sources */,
 				DC73658F2A5B52F40030A5DF /* CategoryCollectionViewCell.swift in Sources */,
 				DC7365922A5EDBE20030A5DF /* EditExpenseLogFlow.swift in Sources */,

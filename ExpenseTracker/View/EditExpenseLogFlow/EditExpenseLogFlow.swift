@@ -18,11 +18,12 @@ class EditExpenseLogFlow: UIViewController {
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     
+    
     private var datePicker = UIDatePicker()
     private let pickerView = UIPickerView()
     private let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities","Other"]
     
-    
+    var viewModel = EditExpenseLogVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,7 @@ class EditExpenseLogFlow: UIViewController {
         pickerView.dataSource = self
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/mm/yyyy"
+        dateFormatter.dateFormat = "dd MMM yyyy"
         let toDay = Date()
         let todayFormatted = dateFormatter.string(from: toDay)
         dateTextField.text = todayFormatted
@@ -108,8 +109,8 @@ class EditExpenseLogFlow: UIViewController {
         priceTextField.tintColor = .clear
         priceTextField.borderStyle = .none
         
-        priceTextField.delegate = self
-        priceTextField.keyboardType = .numberPad
+        //priceTextField.delegate = self
+        //priceTextField.keyboardType = .numberPad
     }
     
     // MARK: Select Category Action
@@ -162,25 +163,45 @@ class EditExpenseLogFlow: UIViewController {
         
     }
     @objc func saveButtonTapped() {
-        print("Save succesful")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let saveData = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
+//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                let managedContext = appDelegate.persistentContainer.viewContext
+//
+//                // Silmek istediğiniz Entity adını buraya girin
+//                let entityName = "Expense"
+//
+//                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+//
+//                // Silinecek tüm verileri çekmek için fetch request'i kullanın
+//                do {
+//                    let records = try managedContext.fetch(fetchRequest)
+//                    for record in records {
+//                        if let object = record as? NSManagedObject {
+//                            // Her veriyi silebilirsiniz
+//                            managedContext.delete(object)
+//                        }
+//                    }
+//
+//                    // Verileri kaydedin
+//                    try managedContext.save()
+//
+//                    print("Tüm veriler başarıyla silindi.")
+//                } catch {
+//                    print("Hata oluştu: Veriler silinemedi.")
+//                }
         
-        // save all data
-        saveData.setValue(UUID(), forKey: "id")
-        //saveData.setValue(priceTextField.text!, forKey: "price")
-        saveData.setValue(productNameTextField.text!, forKey: "product")
         
-        do {
-            try context.save()
-            print("Data Save Done")
-        } catch {
-            print("Error")
-        }
-        NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
-        self.navigationController?.popViewController(animated: true)
+       
+        
+        viewModel.saveData(value: UUID(), key: "id")
+        viewModel.saveData(value: productNameTextField.text!, key: "product")
+//        viewModel.saveData(value: priceTextField.text!, key: "price")
+        viewModel.saveData(value: dateTextField.text!, key: "date")
+//
+//
+       NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
         dismiss(animated: true, completion: nil)
+        
+        
     }
     
 }
@@ -217,10 +238,10 @@ extension EditExpenseLogFlow: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 // MARK: TextField Extension
-extension EditExpenseLogFlow: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let allowedCharecters = CharacterSet(charactersIn: "0123456789")
-        let characterSet = CharacterSet(charactersIn: string)
-        return allowedCharecters.isSuperset(of: characterSet)
-    }
-}
+//extension EditExpenseLogFlow: UITextFieldDelegate {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let allowedCharecters = CharacterSet(charactersIn: "0123456789")
+//        let characterSet = CharacterSet(charactersIn: string)
+//        return allowedCharecters.isSuperset(of: characterSet)
+//    }
+//}

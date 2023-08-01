@@ -31,57 +31,72 @@ class LogsFlow: UIViewController {
     @IBOutlet weak var segmentView: UIStackView!
     @IBOutlet weak var itemTableView: UITableView!
     
-    var productNameArray = [String]()
-    var idArray = [UUID]()
+    //    var productNameArray = [String]()
+    //    var idArray = [UUID]()
+    
+    var viewModel = LogsFlowVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         //        let context = appDelegate.persistentContainer.viewContext
+        viewModel.delegate = self
         //        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
         //        request.returnsObjectsAsFaults = false
         
         setNavigationController()
         setTabCollectionView()
         
-        getData()
+        //getData()
+        
+        itemTableView.reloadData()
         
         itemTableView.dataSource = self
         itemTableView.delegate = self
+        itemTableView.register(ItemCell.nibName, forCellReuseIdentifier: ItemCell.identifer)
         
         itemTableView.layer.borderWidth = 0.3
         itemTableView.layer.borderColor = UIColor.gray.cgColor
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
+        //NotificationCenter.default.removeObserver("newData")
+        viewModel.getAllData()
+        itemTableView.reloadData()
         
+
     }
+
+    
     
     // MARK: CoreData Fetch Proccess
     @objc func getData(){
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
-        fetchRequest.returnsObjectsAsFaults = false
-        
-        do{
-            let results = try context.fetch(fetchRequest)
-            for resut in results as! [NSManagedObject]{
-                
-                if let product = resut.value(forKey: "product") as? String {
-                    self.productNameArray.append(product)
-                }
-                if let id = resut.value(forKey: "id") as? UUID {
-                    self.idArray.append(id)
-                }
-                self.itemTableView.reloadData()
-            }
-        } catch {
-            
-        }
+        viewModel.getAllData()
+        //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        //        let context = appDelegate.persistentContainer.viewContext
+        //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
+        //        fetchRequest.returnsObjectsAsFaults = false
+        //
+        //        do{
+        //            let results = try context.fetch(fetchRequest)
+        //            for resut in results as! [NSManagedObject]{
+        //
+        //                if let product = resut.value(forKey: "product") as? String {
+        //                    self.productNameArray.append(product)
+        //                }
+        //                if let id = resut.value(forKey: "id") as? UUID {
+        //                    self.idArray.append(id)
+        //                }
+        //                self.itemTableView.reloadData()
+        //            }
+        //        } catch {
+        //
+        //        }
     }
     
     // MARK: Set ColletionView
@@ -126,6 +141,7 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = categories[indexPath.item]
         print("Seçilen Kategori: \(selectedCategory.title)")
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -167,16 +183,54 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
 extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return idArray.count
+        //return idArray.count
+        return viewModel.idArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = productNameArray[indexPath.row]
+        
+        
+        let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
+        
+        if indexPath.row < viewModel.productNameArray.count {
+            cell.productLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
+        } else {
+            cell.productLabelText.text = "--"
+        }
+        if indexPath.row < viewModel.priceArray.count {
+            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
+        } else {
+            cell.priceLabelText.text = "-----"
+        }
+        //cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
+        //print("\(viewModel.categoryNameArray[indexPath.row])")
+        if indexPath.row < viewModel.dateArray.count {
+            cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
+        } else {
+            cell.dateLabelText.text = "-"
+        }
+        
         return cell
+        
+        //        let cell = UITableViewCell()
+        //        cell.textLabel?.text = productNameArray[indexPath.row]
+        //        return cell
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+}
+
+
+extension LogsFlow: LogsFlowVMDelegate {
+    func refreshTableView() {
+        DispatchQueue.main.async {
+            self.itemTableView.reloadData()
+        }
     }
     
     
 }
-
-
