@@ -31,8 +31,6 @@ class LogsFlow: UIViewController {
     @IBOutlet weak var segmentView: UIStackView!
     @IBOutlet weak var itemTableView: UITableView!
     
-    //    var productNameArray = [String]()
-    //    var idArray = [UUID]()
     
     var viewModel = LogsFlowVM()
     
@@ -68,9 +66,9 @@ class LogsFlow: UIViewController {
         viewModel.getAllData()
         itemTableView.reloadData()
         
-
+        
     }
-
+    
     
     
     // MARK: CoreData Fetch Proccess
@@ -210,17 +208,31 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
             cell.dateLabelText.text = "-"
         }
         
+        if indexPath.row < viewModel.categoryNameArray.count {
+            let selectedCategory = viewModel.categoryNameArray[indexPath.row]
+            
+            switch selectedCategory {
+            case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
+            case "Food": cell.categoryImageView.image = UIImage(named: "food")
+            case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
+            case "Health": cell.categoryImageView.image = UIImage(named: "health")
+            case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
+            case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
+            case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
+            
+                
+            default:
+                cell.categoryImageView.image = UIImage(named: "other")
+            }
+        } else {
+            cell.categoryImageView.image = UIImage(named: "other")
+        }
+        
         return cell
-        
-        //        let cell = UITableViewCell()
-        //        cell.textLabel?.text = productNameArray[indexPath.row]
-        //        return cell
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
 }
 

@@ -21,7 +21,7 @@ class EditExpenseLogFlow: UIViewController {
     
     private var datePicker = UIDatePicker()
     private let pickerView = UIPickerView()
-    private let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities","Other"]
+    private let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportion","Utilities","Other"]
     
     var viewModel = EditExpenseLogVM()
     
@@ -109,8 +109,8 @@ class EditExpenseLogFlow: UIViewController {
         priceTextField.tintColor = .clear
         priceTextField.borderStyle = .none
         
-        //priceTextField.delegate = self
-        //priceTextField.keyboardType = .numberPad
+//        priceTextField.delegate = self
+//        priceTextField.keyboardType = .numberPad
     }
     
     // MARK: Select Category Action
@@ -135,7 +135,7 @@ class EditExpenseLogFlow: UIViewController {
         
         categoryTextField.text = selecetCategory
         categoryTextField.resignFirstResponder()
-        print(selecetCategory)
+        print("Seçilen kategori: \(selecetCategory)")
     }
     
     // MARK: Set ViewController Function
@@ -190,14 +190,15 @@ class EditExpenseLogFlow: UIViewController {
 //                }
         
         
-       
+        
         
         viewModel.saveData(value: UUID(), key: "id")
         viewModel.saveData(value: productNameTextField.text!, key: "product")
-//        viewModel.saveData(value: priceTextField.text!, key: "price")
+        viewModel.saveData(value: priceTextField.text!, key: "price")
         viewModel.saveData(value: dateTextField.text!, key: "date")
-//
-//
+        viewModel.saveData(value: categoryTextField.text!, key: "category")
+
+
        NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
         dismiss(animated: true, completion: nil)
         
