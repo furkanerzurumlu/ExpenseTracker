@@ -110,7 +110,7 @@ class EditExpenseLogFlow: UIViewController {
         priceTextField.borderStyle = .none
         
 //        priceTextField.delegate = self
-//        priceTextField.keyboardType = .numberPad
+//        priceTextField.keyboardType =vi .numberPad
     }
     
     // MARK: Select Category Action
@@ -194,7 +194,11 @@ class EditExpenseLogFlow: UIViewController {
         
         viewModel.saveData(value: UUID(), key: "id")
         viewModel.saveData(value: productNameTextField.text!, key: "product")
-        viewModel.saveData(value: priceTextField.text!, key: "price")
+//        viewModel.saveData(value: priceTextField.text!, key: "price")
+        if let priceText = priceTextField.text, let priceNumber = Double(priceText){
+            viewModel.saveData(value: NSNumber(value: priceNumber), key: "price")
+        }
+
         viewModel.saveData(value: dateTextField.text!, key: "date")
         viewModel.saveData(value: categoryTextField.text!, key: "category")
 

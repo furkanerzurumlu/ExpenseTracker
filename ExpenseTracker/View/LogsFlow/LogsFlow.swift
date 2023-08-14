@@ -196,7 +196,10 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
             cell.productLabelText.text = "--"
         }
         if indexPath.row < viewModel.priceArray.count {
-            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
+//            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
+            let price = viewModel.priceArray[indexPath.row]
+            cell.priceLabelText.text = "\(price)"
+            
         } else {
             cell.priceLabelText.text = "-----"
         }
