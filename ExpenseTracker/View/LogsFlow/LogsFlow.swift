@@ -75,7 +75,8 @@ class LogsFlow: UIViewController {
     @objc func getData(){
         
         viewModel.getAllData()
-        //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        
+                //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         //        let context = appDelegate.persistentContainer.viewContext
         //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
         //        fetchRequest.returnsObjectsAsFaults = false
@@ -118,11 +119,11 @@ class LogsFlow: UIViewController {
     // MARK: Set Navigation Controller
     private func setNavigationController(){
         navigationItem.title = "Expense Logs"
-        let rightButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(saveButtonTapped))
+        let rightButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(saveButton))
         navigationItem.rightBarButtonItem = rightButton
     }
     
-    @objc func saveButtonTapped() {
+    @objc func saveButton() {
         performSegue(withIdentifier: "showEditFlow", sender: nil)
         print("Go Edit Flow")
     }
@@ -197,8 +198,13 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         }
         if indexPath.row < viewModel.priceArray.count {
 //            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
-            let price = viewModel.priceArray[indexPath.row]
-            cell.priceLabelText.text = "\(price)"
+            let newArray = viewModel.priceArray.filter { $0 != 0 }
+            print("Old Array: \(viewModel.priceArray)")
+            print("New Array: \(newArray)")
+            
+//            let price = viewModel.priceArray[indexPath.row]
+//            cell.priceLabelText.text = "\(price)$"
+            cell.priceLabelText.text = "\(newArray[indexPath.row])$"
             
         } else {
             cell.priceLabelText.text = "-----"

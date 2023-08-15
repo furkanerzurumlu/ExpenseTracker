@@ -61,12 +61,16 @@ class LogsFlowVM {
         
         do {
             let results = try context.fetch(fetchRequest)
+//            var idArray = [UUID]()
+//            var dateArray = [String]()
+//            var productNameArray = [String]()
+//            var priceArray = [Int]()
+//            var categoryNameArray = [String]()
             var idArray = [UUID]()
             var dateArray = [String]()
-            var productNameArray = [String]()
             var priceArray = [Int]()
+            var productNameArray = [String]()
             var categoryNameArray = [String]()
-            
             delegate?.refreshTableView() // Delegasyon ile tabloyu güncelliyoruz
             
             for result in results as! [NSManagedObject] {
