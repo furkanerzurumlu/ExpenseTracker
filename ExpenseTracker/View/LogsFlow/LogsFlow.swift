@@ -31,12 +31,17 @@ class LogsFlow: UIViewController {
     @IBOutlet weak var segmentView: UIStackView!
     @IBOutlet weak var itemTableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     
+    var filterData: [String]!
     var viewModel = LogsFlowVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.getAllData()
+        filterData = viewModel.productNameArray
+        searchBar.delegate = self
         //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         //        let context = appDelegate.persistentContainer.viewContext
         viewModel.delegate = self
@@ -76,7 +81,7 @@ class LogsFlow: UIViewController {
         
         viewModel.getAllData()
         
-                //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         //        let context = appDelegate.persistentContainer.viewContext
         //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
         //        fetchRequest.returnsObjectsAsFaults = false
@@ -182,8 +187,13 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
 extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return idArray.count
-        return viewModel.idArray.count
+        if searchBar.text?.isEmpty == true{
+            return viewModel.productNameArray.count
+        } else {
+            return filterData.count
+        }
+//        return viewModel.idArray.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -191,20 +201,23 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
         
-        if indexPath.row < viewModel.productNameArray.count {
-            cell.productLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
+        if indexPath.row < filterData.count {
+            cell.productLabelText.text = "\(filterData[indexPath.row])"
         } else {
             cell.productLabelText.text = "--"
+//            cell.priceLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
         }
+        
+        
         if indexPath.row < viewModel.priceArray.count {
-//            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
+            //            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
             let newArray = viewModel.priceArray.filter { $0 != 0 }
-            print("Old Array: \(viewModel.priceArray)")
-            print("New Array: \(newArray)")
+            //            print("Old Array: \(viewModel.priceArray)")
+            //            print("New Array: \(newArray)")
             
-//            let price = viewModel.priceArray[indexPath.row]
-//            cell.priceLabelText.text = "\(price)$"
-            cell.priceLabelText.text = "\(newArray[indexPath.row])$"
+            //            let price = viewModel.priceArray[indexPath.row]
+            //            cell.priceLabelText.text = "\(price)$"
+            cell.priceLabelText.text = "$ \(newArray[indexPath.row])"
             
         } else {
             cell.priceLabelText.text = "-----"
@@ -228,7 +241,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
             case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
             case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
             case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
-            
+                
                 
             default:
                 cell.categoryImageView.image = UIImage(named: "other")
@@ -244,6 +257,18 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
 }
+
+extension LogsFlow: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty == true {
+            filterData = viewModel.productNameArray
+        } else {
+            filterData = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
+        }
+        refreshTableView()
+    }
+}
+
 
 
 extension LogsFlow: LogsFlowVMDelegate {

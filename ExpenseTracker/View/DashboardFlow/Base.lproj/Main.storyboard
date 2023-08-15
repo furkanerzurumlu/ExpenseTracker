@@ -185,6 +185,7 @@
                     <navigationItem key="navigationItem" id="K1b-lt-zXU"/>
                     <connections>
                         <outlet property="itemTableView" destination="eGo-3d-BC5" id="Ews-QG-B5d"/>
+                        <outlet property="searchBar" destination="Qtp-6Y-Vvc" id="Tr2-NR-Ld2"/>
                         <outlet property="segmentView" destination="hX8-mU-Fcf" id="ZRG-LI-68v"/>
                         <outlet property="tabCollectionView" destination="XNy-iF-pAj" id="m9z-bE-USc"/>
                         <segue destination="Vcl-8s-l8f" kind="presentation" identifier="showEditFlow" id="iw1-7A-wKJ"/>
