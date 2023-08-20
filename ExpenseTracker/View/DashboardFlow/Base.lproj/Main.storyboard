@@ -23,15 +23,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5Y-eV-jvD">
+                                <rect key="frame" x="67" y="194" width="240" height="185"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NGY-yw-tFp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="A13-25-eHj"/>
+                            <constraint firstItem="p5Y-eV-jvD" firstAttribute="top" secondItem="NGY-yw-tFp" secondAttribute="bottom" constant="113" id="EGv-p0-q0J"/>
                             <constraint firstItem="NGY-yw-tFp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="S5h-2O-eM4"/>
+                            <constraint firstItem="p5Y-eV-jvD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="Y6D-k7-pNE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="p5Y-eV-jvD" secondAttribute="bottom" constant="350" id="Zw5-dF-nah"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="p5Y-eV-jvD" secondAttribute="trailing" constant="68" id="f88-qu-zvI"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" image="circleChart" id="adv-kw-zIF"/>
+                    <connections>
+                        <outlet property="pieView" destination="p5Y-eV-jvD" id="UVN-VK-QDp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -41,17 +41,12 @@ class LogsFlow: UIViewController {
         
         viewModel.getAllData()
         filterData = viewModel.productNameArray
-        searchBar.delegate = self
-        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        //        let context = appDelegate.persistentContainer.viewContext
-        viewModel.delegate = self
-        //        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
-        //        request.returnsObjectsAsFaults = false
         
+        searchBar.delegate = self
+        viewModel.delegate = self
+       
         setNavigationController()
         setTabCollectionView()
-        
-        //getData()
         
         itemTableView.reloadData()
         
@@ -192,7 +187,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         } else {
             return filterData.count
         }
-//        return viewModel.idArray.count
+        //        return viewModel.idArray.count
         
     }
     
@@ -202,22 +197,25 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
         
         if indexPath.row < filterData.count {
+            
             cell.productLabelText.text = "\(filterData[indexPath.row])"
         } else {
             cell.productLabelText.text = "--"
-//            cell.priceLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
+            //            cell.priceLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
         }
         
         
         if indexPath.row < viewModel.priceArray.count {
             //            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
             let newArray = viewModel.priceArray.filter { $0 != 0 }
-            //            print("Old Array: \(viewModel.priceArray)")
-            //            print("New Array: \(newArray)")
+            cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
             
-            //            let price = viewModel.priceArray[indexPath.row]
-            //            cell.priceLabelText.text = "\(price)$"
-            cell.priceLabelText.text = "$ \(newArray[indexPath.row])"
+            print("Old Array: \(viewModel.priceArray)")
+            print("New Array: \(newArray)")
+            
+            //                        let price = viewModel.priceArray[indexPath.row]
+            //                        cell.priceLabelText.text = "\(price)$"
+            
             
         } else {
             cell.priceLabelText.text = "-----"
@@ -262,6 +260,7 @@ extension LogsFlow: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty == true {
             filterData = viewModel.productNameArray
+            
         } else {
             filterData = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
         }

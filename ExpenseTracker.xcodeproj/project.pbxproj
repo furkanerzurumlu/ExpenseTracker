@@ -15,6 +15,8 @@
 		DC9DE22E2A782E3F002E20F1 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE22D2A782E3F002E20F1 /* ItemModel.swift */; };
 		DC9DE2312A782F02002E20F1 /* LogsFlowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE2302A782F02002E20F1 /* LogsFlowVM.swift */; };
 		DC9DE2332A78602D002E20F1 /* EditExpenseLogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE2322A78602D002E20F1 /* EditExpenseLogVM.swift */; };
+		DC9DE2352A92860A002E20F1 /* DashboardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE2342A92860A002E20F1 /* DashboardVM.swift */; };
+		DC9DE2422A92A348002E20F1 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = DC9DE2412A92A348002E20F1 /* DGCharts */; };
 		DCC5B64A2A5B32FB0087B9E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B6492A5B32FB0087B9E0 /* AppDelegate.swift */; };
 		DCC5B64C2A5B32FB0087B9E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B64B2A5B32FB0087B9E0 /* SceneDelegate.swift */; };
 		DCC5B64E2A5B32FB0087B9E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC5B64D2A5B32FB0087B9E0 /* ViewController.swift */; };
@@ -53,6 +55,7 @@
 		DC9DE22D2A782E3F002E20F1 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		DC9DE2302A782F02002E20F1 /* LogsFlowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsFlowVM.swift; sourceTree = "<group>"; };
 		DC9DE2322A78602D002E20F1 /* EditExpenseLogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseLogVM.swift; sourceTree = "<group>"; };
+		DC9DE2342A92860A002E20F1 /* DashboardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVM.swift; sourceTree = "<group>"; };
 		DCC5B6462A5B32FB0087B9E0 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC5B6492A5B32FB0087B9E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC5B64B2A5B32FB0087B9E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9DE2422A92A348002E20F1 /* DGCharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,8 +111,9 @@
 		DC7365872A5B34440030A5DF /* DashboardFlow */ = {
 			isa = PBXGroup;
 			children = (
-				DCC5B64D2A5B32FB0087B9E0 /* ViewController.swift */,
 				DCC5B64F2A5B32FB0087B9E0 /* Main.storyboard */,
+				DCC5B64D2A5B32FB0087B9E0 /* ViewController.swift */,
+				DC9DE2342A92860A002E20F1 /* DashboardVM.swift */,
 			);
 			path = DashboardFlow;
 			sourceTree = "<group>";
@@ -234,6 +239,9 @@
 			dependencies = (
 			);
 			name = ExpenseTracker;
+			packageProductDependencies = (
+				DC9DE2412A92A348002E20F1 /* DGCharts */,
+			);
 			productName = ExpenseTracker;
 			productReference = DCC5B6462A5B32FB0087B9E0 /* ExpenseTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -306,6 +314,9 @@
 				Base,
 			);
 			mainGroup = DCC5B63D2A5B32FB0087B9E0;
+			packageReferences = (
+				DC9DE2402A92A348002E20F1 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = DCC5B6472A5B32FB0087B9E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -353,6 +364,7 @@
 				DC9DE2332A78602D002E20F1 /* EditExpenseLogVM.swift in Sources */,
 				DC9DE22E2A782E3F002E20F1 /* ItemModel.swift in Sources */,
 				DC9DE22A2A77FB51002E20F1 /* ItemCell.swift in Sources */,
+				DC9DE2352A92860A002E20F1 /* DashboardVM.swift in Sources */,
 				DCC5B64E2A5B32FB0087B9E0 /* ViewController.swift in Sources */,
 				DC73658C2A5B44A90030A5DF /* LogsFlow.swift in Sources */,
 				DCC5B64A2A5B32FB0087B9E0 /* AppDelegate.swift in Sources */,
@@ -702,6 +714,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DC9DE2402A92A348002E20F1 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DC9DE2412A92A348002E20F1 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC9DE2402A92A348002E20F1 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		DCC5B6522A5B32FB0087B9E0 /* ExpenseTracker.xcdatamodeld */ = {
