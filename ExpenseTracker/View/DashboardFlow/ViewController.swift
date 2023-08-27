@@ -14,8 +14,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var pieView: PieChartView!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,20 +31,27 @@ class ViewController: UIViewController {
     }
     
     func setupPieChart(){
-        let entry1 = PieChartDataEntry(value: 30.0, label: "Veri 1")
-                let entry2 = PieChartDataEntry(value: 20.0, label: "Veri 2")
-                let entry3 = PieChartDataEntry(value: 50.0, label: "Veri 3")
-                
-                let dataSet = PieChartDataSet(entries: [entry1, entry2, entry3], label: "Pasta Grafiği Verileri")
-                dataSet.colors = ChartColorTemplates.joyful()
-
-                let data = PieChartData(dataSet: dataSet)
+        var dataEntries: [ChartDataEntry] = []
+        
+        let values: [Double] = [30.0, 40.0, 20.0, 10.0]
+        for (index, value) in values.enumerated() {
+            let entry = PieChartDataEntry(value: value, label: "Segment \(index)")
+            dataEntries.append(entry)
+        }
+        
+        let dataSet = PieChartDataSet(entries: dataEntries, label: "")
+        dataSet.colors = ChartColorTemplates.vordiplom()
+        dataSet.valueTextColor = .white
+        dataSet.entryLabelColor = .white
+        
+        let data = PieChartData(dataSet: dataSet)
         pieView.data = data
-
-                // İsteğe bağlı olarak grafiği özelleştirme
-        pieView.chartDescription.text = "Pasta Grafiği Örneği"
-        pieView.centerText = "Veriler"
-        pieView.animate(xAxisDuration: 0.5, easingOption: .easeOutBack)
+        
+        pieView.legend.enabled = true
+        pieView.drawEntryLabelsEnabled = false
+        pieView.drawHoleEnabled = false
+        pieView.legend.enabled = false
+        
     }
     
 }
