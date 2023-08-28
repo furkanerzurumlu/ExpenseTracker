@@ -10,16 +10,38 @@ import Charts
 import DGCharts
 
 
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var pieView: PieChartView!
     
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    let colors: [UIColor] = [
+        UIColor(hex: 0xFF5733),
+        UIColor(hex: 0xE74C3C),
+        UIColor(hex: 0x3498DB),
+        UIColor(hex: 0x1ABC9C),
+        UIColor(hex: 0x9B59B6),
+        UIColor(hex: 0xF39C12),
+        UIColor(hex: 0x16A085),
+        UIColor(hex: 0xF39C12)
+    ]
+    
+    var viewModel = DashboardVM()
+    var totalPrice = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTabBar()
+        viewModel.getAllData()
         
+        setTabBar()
         setupPieChart()
+        
+        totalExpenditure()
+        print("Total: \(viewModel.priceArray.count)")
+        
+    
+        
     }
     
     func setTabBar(){
@@ -33,16 +55,28 @@ class ViewController: UIViewController {
     func setupPieChart(){
         var dataEntries: [ChartDataEntry] = []
         
-        let values: [Double] = [30.0, 40.0, 20.0, 10.0]
+        let values: [Double] = [10.0, 10.0, 20.0, 10.0, 10.0, 10.0, 20.0, 10.0]
         for (index, value) in values.enumerated() {
             let entry = PieChartDataEntry(value: value, label: "Segment \(index)")
             dataEntries.append(entry)
         }
         
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
-        dataSet.colors = ChartColorTemplates.vordiplom()
-        dataSet.valueTextColor = .white
+        
+        
+        
+        dataSet.colors = colors
+        dataSet.valueTextColor = .black
         dataSet.entryLabelColor = .white
+        dataSet.sliceSpace = 3
+        
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .percent
+        numberFormatter.maximumFractionDigits = 1
+        numberFormatter.multiplier = 1
+        numberFormatter.percentSymbol = "%"
+        dataSet.valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
         
         let data = PieChartData(dataSet: dataSet)
         pieView.data = data
@@ -52,6 +86,17 @@ class ViewController: UIViewController {
         pieView.drawHoleEnabled = false
         pieView.legend.enabled = false
         
+    }
+    
+    func totalExpenditure(){
+        for index in viewModel.priceArray {
+            if let intValue = index as? Int {
+                totalPrice += intValue
+//                print("Total Price: \(totalPrice)")
+                totalPriceLabel.text = "$\(totalPrice).00"
+            }
+            
+        }
     }
     
 }

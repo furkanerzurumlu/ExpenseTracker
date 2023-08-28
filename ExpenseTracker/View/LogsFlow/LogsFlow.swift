@@ -13,7 +13,7 @@ struct Category {
     let title: String
 }
 let categories: [Category] = [
-    Category(title: "ALL"),
+    Category(title: "All   "),
     Category(title: "Donation"),
     Category(title: "Food"),
     Category(title: "Entertainment"),
