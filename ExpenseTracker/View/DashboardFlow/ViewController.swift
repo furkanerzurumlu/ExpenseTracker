@@ -9,8 +9,6 @@ import UIKit
 import Charts
 import DGCharts
 
-
-
 class ViewController: UIViewController {
     
     @IBOutlet weak var pieView: PieChartView!
