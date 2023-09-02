@@ -38,8 +38,6 @@ class ViewController: UIViewController {
         totalExpenditure()
         print("Total: \(viewModel.priceArray.count)")
         
-    
-        
     }
     
     func setTabBar(){
