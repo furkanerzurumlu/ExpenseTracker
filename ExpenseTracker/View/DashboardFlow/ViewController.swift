@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel.getAllData()
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
         
         setTabBar()
         setupPieChart()
@@ -39,6 +40,18 @@ class ViewController: UIViewController {
         print("Total: \(viewModel.priceArray.count)")
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
+        //NotificationCenter.default.removeObserver("newData")
+        viewModel.getAllData()
+
+        
+        
+    }
+    @objc func getData(){
+        viewModel.getAllData()
+    }
+    
     
     func setTabBar(){
         self.tabBarController?.tabBar.items?[0].image = UIImage(named: "circleChart")

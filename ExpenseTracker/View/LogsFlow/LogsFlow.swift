@@ -12,6 +12,7 @@ import CoreData
 struct Category {
     let title: String
 }
+
 let categories: [Category] = [
     Category(title: "All   "),
     Category(title: "Donation"),
@@ -22,7 +23,6 @@ let categories: [Category] = [
     Category(title: "Transportion"),
     Category(title: "Utilities"),
     Category(title: "Other"),
-    
 ]
 
 class LogsFlow: UIViewController {
@@ -34,18 +34,21 @@ class LogsFlow: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var filterData: [String]!
+    var filterProductName: [String] = []
+    var filterCategory:[String] = []
+    
     var viewModel = LogsFlowVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel.getAllData()
-        filterData = viewModel.productNameArray
+        filterProductName = viewModel.productNameArray
+        filterCategory = viewModel.categoryNameArray
         
         searchBar.delegate = self
         viewModel.delegate = self
-       
+        
         setNavigationController()
         setTabCollectionView()
         
@@ -57,7 +60,7 @@ class LogsFlow: UIViewController {
         
         itemTableView.layer.borderWidth = 0.3
         itemTableView.layer.borderColor = UIColor.gray.cgColor
-        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
+        
         
         
     }
@@ -98,6 +101,9 @@ class LogsFlow: UIViewController {
         //
         //        }
     }
+    
+    
+    
     
     // MARK: Set ColletionView
     private func setTabCollectionView(){
@@ -140,7 +146,12 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = categories[indexPath.item]
-        print("Seçilen Kategori: \(selectedCategory.title)")
+        let selectedCategoryTitle = selectedCategory.title.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        print("Seçilen Kategori: \(selectedCategoryTitle)")
+        
+        switch 
+        
         
     }
     
@@ -186,7 +197,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         if searchBar.text?.isEmpty == true{
             return viewModel.productNameArray.count
         } else {
-            return filterData.count
+            return filterProductName.count
         }
         //        return viewModel.idArray.count
         
@@ -197,9 +208,9 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
         
-        if indexPath.row < filterData.count {
+        if indexPath.row < filterProductName.count {
             
-            cell.productLabelText.text = "\(filterData[indexPath.row])"
+            cell.productLabelText.text = "\(filterProductName[indexPath.row])"
         } else {
             cell.productLabelText.text = "--"
             //            cell.priceLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
@@ -259,11 +270,12 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
 
 extension LogsFlow: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         if searchText.isEmpty == true {
-            filterData = viewModel.productNameArray
+            filterProductName = viewModel.productNameArray
             
         } else {
-            filterData = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
+            filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
         }
         refreshTableView()
     }
