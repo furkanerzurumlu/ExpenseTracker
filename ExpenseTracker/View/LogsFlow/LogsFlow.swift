@@ -46,6 +46,9 @@ class LogsFlow: UIViewController {
         filterProductName = viewModel.productNameArray
         filterCategory = viewModel.categoryNameArray
         
+        
+        
+        
         searchBar.delegate = self
         viewModel.delegate = self
         
@@ -61,7 +64,7 @@ class LogsFlow: UIViewController {
         itemTableView.layer.borderWidth = 0.3
         itemTableView.layer.borderColor = UIColor.gray.cgColor
         
-        
+        print("Kategori Array :\(viewModel.categoryNameArray)")
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -150,7 +153,27 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         
         print("Seçilen Kategori: \(selectedCategoryTitle)")
         
-        switch 
+        let categoryArray = viewModel.categoryNameArray
+        
+        print("All Category :\(categoryArray)")
+        let cellToReload = categoryArray.filter{ $0 == selectedCategoryTitle}
+        
+        print("Filtrelenmiş Array:\( cellToReload)")
+        
+        viewModel.filteredItemsArray = cellToReload
+        
+        if let index = categoryArray.firstIndex(of: selectedCategoryTitle) {
+            let indexPathsToReload = [IndexPath(row: index, section: 0)]
+            itemTableView.reloadRows(at: indexPathsToReload, with: .automatic)
+        }
+        
+        switch selectedCategoryTitle {
+        case "Donation":
+            print("Donation Done")
+            
+        default:
+            break
+        }
         
         
     }
@@ -172,6 +195,7 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         return CGSize(width: titleWidth + 30, height: 40)
         
         //return CGSize(width: 100, height: 40)
+        
     }
     
     private func calculateLabelWidth(text: String) -> CGFloat {
@@ -205,6 +229,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        print("ViewModel filter Data Test: \(viewModel.filteredItemsArray)")
         
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
         
