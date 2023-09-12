@@ -138,6 +138,7 @@ class LogsFlow: UIViewController {
         print("Go Edit Flow")
     }
     
+    
 }
 
 // MARK: Category CollectionView Extension
@@ -148,7 +149,9 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        refreshTableView()
         let selectedCategory = categories[indexPath.item]
+        
         let selectedCategoryTitle = selectedCategory.title.trimmingCharacters(in: .whitespacesAndNewlines)
         
         print("Seçilen Kategori: \(selectedCategoryTitle)")
@@ -161,22 +164,11 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         print("Filtrelenmiş Array:\( cellToReload)")
         
         viewModel.filteredItemsArray = cellToReload
-        
-        if let index = categoryArray.firstIndex(of: selectedCategoryTitle) {
-            let indexPathsToReload = [IndexPath(row: index, section: 0)]
-            itemTableView.reloadRows(at: indexPathsToReload, with: .automatic)
-        }
-        
-        switch selectedCategoryTitle {
-        case "Donation":
-            print("Donation Done")
-            
-        default:
-            break
-        }
-        
+                
         
     }
+    
+  
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
@@ -218,72 +210,127 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
 extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchBar.text?.isEmpty == true{
+        if searchBar.text?.isEmpty == true && viewModel.filteredItemsArray.isEmpty == true{
             return viewModel.productNameArray.count
-        } else {
+        } else if viewModel.filteredItemsArray.isEmpty == false{
+            print("Count: \(viewModel.filteredItemsArray.count)")
+            return viewModel.filteredItemsArray.count
+        }
+        else {
             return filterProductName.count
         }
-        //        return viewModel.idArray.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print("ViewModel filter Data Test: \(viewModel.filteredItemsArray)")
+        //        print("ViewModel filter Data Test: \(viewModel.filteredItemsArray)")
         
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
         
-        if indexPath.row < filterProductName.count {
+        if viewModel.filteredItemsArray.isEmpty == false{
             
-            cell.productLabelText.text = "\(filterProductName[indexPath.row])"
-        } else {
-            cell.productLabelText.text = "--"
-            //            cell.priceLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
-        }
-        
-        
-        if indexPath.row < viewModel.priceArray.count {
-            //            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
-            let newArray = viewModel.priceArray.filter { $0 != 0 }
-            cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
-            
-            print("Old Array: \(viewModel.priceArray)")
-            print("New Array: \(newArray)")
-            
-            //                        let price = viewModel.priceArray[indexPath.row]
-            //                        cell.priceLabelText.text = "\(price)$"
-            
-            
-        } else {
-            cell.priceLabelText.text = "-----"
-        }
-        //cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
-        //print("\(viewModel.categoryNameArray[indexPath.row])")
-        if indexPath.row < viewModel.dateArray.count {
-            cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
-        } else {
-            cell.dateLabelText.text = "-"
-        }
-        
-        if indexPath.row < viewModel.categoryNameArray.count {
-            let selectedCategory = viewModel.categoryNameArray[indexPath.row]
-            
-            switch selectedCategory {
-            case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
-            case "Food": cell.categoryImageView.image = UIImage(named: "food")
-            case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
-            case "Health": cell.categoryImageView.image = UIImage(named: "health")
-            case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
-            case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
-            case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
+        }else{
+            if indexPath.row < filterProductName.count {
                 
+                cell.productLabelText.text = "\(filterProductName[indexPath.row])"
+            } else {
+                cell.productLabelText.text = "--"
+                //            cell.priceLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
+            }
+            
+            if indexPath.row < viewModel.priceArray.count {
+                //            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
+                let newArray = viewModel.priceArray.filter { $0 != 0 }
+                cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
                 
-            default:
+                print("Old Array: \(viewModel.priceArray)")
+                print("New Array: \(newArray)")
+                
+                //                        let price = viewModel.priceArray[indexPath.row]
+                //                        cell.priceLabelText.text = "\(price)$"
+                
+            } else {
+                cell.priceLabelText.text = "-----"
+            }
+            //cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
+            //print("\(viewModel.categoryNameArray[indexPath.row])")
+            if indexPath.row < viewModel.dateArray.count {
+                cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
+            } else {
+                cell.dateLabelText.text = "-"
+            }
+            
+            if indexPath.row < viewModel.categoryNameArray.count {
+                let selectedCategory = viewModel.categoryNameArray[indexPath.row]
+                
+                switch selectedCategory {
+                case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
+                case "Food": cell.categoryImageView.image = UIImage(named: "food")
+                case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
+                case "Health": cell.categoryImageView.image = UIImage(named: "health")
+                case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
+                case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
+                case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
+                    
+                    
+                default:
+                    cell.categoryImageView.image = UIImage(named: "other")
+                }
+            } else {
                 cell.categoryImageView.image = UIImage(named: "other")
             }
-        } else {
-            cell.categoryImageView.image = UIImage(named: "other")
         }
+        
+        //        if indexPath.row < filterProductName.count {
+        //
+        //            cell.productLabelText.text = "\(filterProductName[indexPath.row])"
+        //        } else {
+        //            cell.productLabelText.text = "--"
+        //            //            cell.priceLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
+        //        }
+        //
+        //        if indexPath.row < viewModel.priceArray.count {
+        //            //            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
+        //            let newArray = viewModel.priceArray.filter { $0 != 0 }
+        //            cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
+        //
+        //            print("Old Array: \(viewModel.priceArray)")
+        //            print("New Array: \(newArray)")
+        //
+        //            //                        let price = viewModel.priceArray[indexPath.row]
+        //            //                        cell.priceLabelText.text = "\(price)$"
+        //
+        //        } else {
+        //            cell.priceLabelText.text = "-----"
+        //        }
+        //        //cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
+        //        //print("\(viewModel.categoryNameArray[indexPath.row])")
+        //        if indexPath.row < viewModel.dateArray.count {
+        //            cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
+        //        } else {
+        //            cell.dateLabelText.text = "-"
+        //        }
+        //
+        //        if indexPath.row < viewModel.categoryNameArray.count {
+        //            let selectedCategory = viewModel.categoryNameArray[indexPath.row]
+        //
+        //            switch selectedCategory {
+        //            case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
+        //            case "Food": cell.categoryImageView.image = UIImage(named: "food")
+        //            case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
+        //            case "Health": cell.categoryImageView.image = UIImage(named: "health")
+        //            case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
+        //            case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
+        //            case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
+        //
+        //
+        //            default:
+        //                cell.categoryImageView.image = UIImage(named: "other")
+        //            }
+        //        } else {
+        //            cell.categoryImageView.image = UIImage(named: "other")
+        //        }
         
         return cell
     }

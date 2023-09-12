@@ -10,6 +10,13 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
     let titleLabel = UILabel()
     
+    override var isSelected: Bool {
+        
+        didSet {
+            self.contentView.tintColor = isSelected ? UIColor.red : UIColor.clear
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -44,14 +51,15 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-                
-                let targetSize = CGSize(width: contentView.bounds.width, height: layoutAttributes.frame.height)
-                let size = titleLabel.sizeThatFits(targetSize)
-                attributes.frame.size.width = ceil(size.width) + 20
-                
-                return attributes
+        
+        let targetSize = CGSize(width: contentView.bounds.width, height: layoutAttributes.frame.height)
+        let size = titleLabel.sizeThatFits(targetSize)
+        attributes.frame.size.width = ceil(size.width) + 20
+        
+        return attributes
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
