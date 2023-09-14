@@ -39,6 +39,9 @@ class LogsFlow: UIViewController {
     
     var viewModel = LogsFlowVM()
     
+    var selectedCell: CategoryCollectionViewCell?
+    var selectedIndex: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,8 +49,8 @@ class LogsFlow: UIViewController {
         filterProductName = viewModel.productNameArray
         filterCategory = viewModel.categoryNameArray
         
-        
-        
+        tabCollectionView.allowsMultipleSelection = true
+        itemTableView.allowsSelection = false
         
         searchBar.delegate = self
         viewModel.delegate = self
@@ -141,7 +144,7 @@ class LogsFlow: UIViewController {
     
 }
 
-// MARK: Category CollectionView Extension
+// MARK: Category CollectionView
 extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
@@ -150,6 +153,9 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         refreshTableView()
+        selectedIndex = indexPath
+        collectionView.reloadData()
+        
         let selectedCategory = categories[indexPath.item]
         
         let selectedCategoryTitle = selectedCategory.title.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -164,11 +170,12 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         print("Filtrelenmiş Array:\( cellToReload)")
         
         viewModel.filteredItemsArray = cellToReload
-                
+        
+        
         
     }
     
-  
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
@@ -177,6 +184,29 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         cell.titleLabel.text = category.title
         
         cell.layoutSubviews()
+        
+        if let selectedIndexPath = selectedIndex {
+            // Eğer selectedIndex değeri nil değilse, yani bir hücre seçilmişse
+            
+            if selectedIndexPath == indexPath {
+                cell.backgroundColor = UIColor(hex: 0xEADBC8)
+                cell.titleLabel.textColor = UIColor.white
+            } else {
+                cell.backgroundColor = UIColor.clear
+                cell.titleLabel.textColor = UIColor.gray
+            }
+        } else {
+            // selectedIndex değeri nil ise, yani hiçbir hücre seçilmemişse
+            
+            if indexPath.item == 0 {
+                cell.backgroundColor = UIColor(hex: 0xEADBC8)
+                cell.titleLabel.textColor = UIColor.white
+            } else {
+                cell.backgroundColor = UIColor.clear
+                cell.titleLabel.textColor = UIColor.gray
+            }
+        }
+        
         
         return cell
     }
@@ -206,7 +236,7 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     }
 }
 
-// MARK: ItemTableView Extension
+// MARK: ItemTableView
 extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

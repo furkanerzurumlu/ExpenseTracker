@@ -10,12 +10,7 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
     let titleLabel = UILabel()
     
-    override var isSelected: Bool {
-        
-        didSet {
-            self.contentView.tintColor = isSelected ? UIColor.red : UIColor.clear
-        }
-    }
+   
     
     override init(frame: CGRect) {
         super.init(frame: frame)
