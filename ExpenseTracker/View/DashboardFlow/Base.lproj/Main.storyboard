@@ -12,7 +12,7 @@
         <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ExpenseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pay_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -295,7 +295,7 @@
         <!--Logs Flow-->
         <scene sceneID="9zq-ya-3pC">
             <objects>
-                <viewController storyboardIdentifier="LogsFlow" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aul-7k-YI9" customClass="LogsFlow" customModule="ExpenseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogsFlow" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aul-7k-YI9" customClass="LogsFlow" customModule="Pay_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dqF-fm-66e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -323,7 +323,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="b3l-dX-eFB">
                                         <rect key="frame" x="0.0" y="-34" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CategoryCollectionViewCell" insetsLayoutMarginsFromSafeArea="NO" id="xfG-yY-zfe" customClass="CategoryCollectionViewCell" customModule="ExpenseTracker" customModuleProvider="target">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CategoryCollectionViewCell" insetsLayoutMarginsFromSafeArea="NO" id="xfG-yY-zfe" customClass="CategoryCollectionViewCell" customModule="Pay_Tracker" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
@@ -390,7 +390,7 @@
                                 <rect key="frame" x="0.0" y="268" width="375" height="461"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fAl-XW-f3Z" customClass="ItemCell" customModule="ExpenseTracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fAl-XW-f3Z" customClass="ItemCell" customModule="Pay_Tracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fAl-XW-f3Z" id="QAA-aW-mJG">
@@ -434,7 +434,7 @@
         <!--Edit Expense Log Flow-->
         <scene sceneID="Md9-Iu-09k">
             <objects>
-                <viewController storyboardIdentifier="EditExpenseLogFlow" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eei-Wp-Aal" customClass="EditExpenseLogFlow" customModule="ExpenseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditExpenseLogFlow" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eei-Wp-Aal" customClass="EditExpenseLogFlow" customModule="Pay_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gbh-xb-7e3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

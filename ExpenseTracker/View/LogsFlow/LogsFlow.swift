@@ -52,12 +52,12 @@ class LogsFlow: UIViewController {
         tabCollectionView.allowsMultipleSelection = true
         itemTableView.allowsSelection = false
         
+        searchBar.placeholder = "Search Expenses"
         searchBar.delegate = self
         viewModel.delegate = self
         
         setNavigationController()
         setTabCollectionView()
-        
         itemTableView.reloadData()
         
         itemTableView.dataSource = self
