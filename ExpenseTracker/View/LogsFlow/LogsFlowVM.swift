@@ -26,6 +26,9 @@ class LogsFlowVM {
     var productNameArray = [String]()
     var categoryNameArray = [String]()
     var filteredItemsArray = [String]()
+    
+    var filterDataValue: String = "All   "
+    
     func getAllData(){
         //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         //        let context = appDelegate.persistentContainer.viewContext
