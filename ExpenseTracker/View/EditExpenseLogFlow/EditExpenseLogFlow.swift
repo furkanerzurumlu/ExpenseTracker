@@ -33,6 +33,13 @@ class EditExpenseLogFlow: UIViewController {
         //        let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
         
         
+        productNameTextField.layer.cornerRadius = 10
+        productNameTextField.layer.borderWidth = 1
+        productNameTextField.layer.borderColor = UIColor.systemBlue.cgColor
+        
+        priceTextField.layer.cornerRadius = 10
+        priceTextField.layer.borderWidth = 1
+        priceTextField.layer.borderColor = UIColor.systemBlue.cgColor
         
         setViewController()
         rightSaveButton()
@@ -52,7 +59,7 @@ class EditExpenseLogFlow: UIViewController {
         let todayFormatted = dateFormatter.string(from: toDay)
         dateTextField.text = todayFormatted
         
-        productNameTextField.borderStyle = .none
+        
         productNameTextField.placeholder = "Enter Expense"
         
         dateTextField.tintColor = .clear
@@ -94,23 +101,24 @@ class EditExpenseLogFlow: UIViewController {
     
     // MARK: Select Price Action
     private func setPriceTextField(){
-        priceView.layer.borderColor = UIColor.gray.cgColor
-        priceView.layer.borderWidth = 0.3
+        //        priceView.layer.borderColor = UIColor.gray.cgColor
+        //        priceView.layer.borderWidth = 0.3
         
-        priceTextField.borderStyle = .none
+        
         
         let dolarLabel = UILabel()
-        dolarLabel.text = "$"
-        dolarLabel.font = UIFont.systemFont(ofSize: 22)
+        dolarLabel.text = " $"
+        dolarLabel.font = UIFont.systemFont(ofSize: 18)
         dolarLabel.sizeToFit()
         priceTextField.leftView = dolarLabel
         priceTextField.leftViewMode = .always
         
         priceTextField.tintColor = .clear
         priceTextField.borderStyle = .none
+        priceTextField.placeholder = " 19.99"
         
-//        priceTextField.delegate = self
-//        priceTextField.keyboardType =vi .numberPad
+        //        priceTextField.delegate = self
+        //        priceTextField.keyboardType =vi .numberPad
     }
     
     // MARK: Select Category Action
@@ -163,47 +171,47 @@ class EditExpenseLogFlow: UIViewController {
         
     }
     @objc func saveButtonTapped() {
-//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                let managedContext = appDelegate.persistentContainer.viewContext
-//
-//                // Silmek istediğiniz Entity adını buraya girin
-//                let entityName = "Expense"
-//
-//                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-//
-//                // Silinecek tüm verileri çekmek için fetch request'i kullanın
-//                do {
-//                    let records = try managedContext.fetch(fetchRequest)
-//                    for record in records {
-//                        if let object = record as? NSManagedObject {
-//                            // Her veriyi silebilirsiniz
-//                            managedContext.delete(object)
-//                        }
-//                    }
-//
-//                    // Verileri kaydedin
-//                    try managedContext.save()
-//
-//                    print("Tüm veriler başarıyla silindi.")
-//                } catch {
-//                    print("Hata oluştu: Veriler silinemedi.")
-//                }
+        //                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //                let managedContext = appDelegate.persistentContainer.viewContext
+        //
+        //                // Silmek istediğiniz Entity adını buraya girin
+        //                let entityName = "Expense"
+        //
+        //                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        //
+        //                // Silinecek tüm verileri çekmek için fetch request'i kullanın
+        //                do {
+        //                    let records = try managedContext.fetch(fetchRequest)
+        //                    for record in records {
+        //                        if let object = record as? NSManagedObject {
+        //                            // Her veriyi silebilirsiniz
+        //                            managedContext.delete(object)
+        //                        }
+        //                    }
+        //
+        //                    // Verileri kaydedin
+        //                    try managedContext.save()
+        //
+        //                    print("Tüm veriler başarıyla silindi.")
+        //                } catch {
+        //                    print("Hata oluştu: Veriler silinemedi.")
+        //                }
         
         
         
         
         viewModel.saveData(value: UUID(), key: "id")
         viewModel.saveData(value: productNameTextField.text!, key: "product")
-//        viewModel.saveData(value: priceTextField.text!, key: "price")
+        //        viewModel.saveData(value: priceTextField.text!, key: "price")
         if let priceText = priceTextField.text, let priceNumber = Double(priceText){
             viewModel.saveData(value: NSNumber(value: priceNumber), key: "price")
         }
-
+        
         viewModel.saveData(value: dateTextField.text!, key: "date")
         viewModel.saveData(value: categoryTextField.text!, key: "category")
-
-
-       NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
+        
+        
+        NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
         dismiss(animated: true, completion: nil)
         
         
