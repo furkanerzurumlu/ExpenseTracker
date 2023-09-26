@@ -13,14 +13,14 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    @IBAction func catogoryPopUpButton(_ sender: Any) {
-    }
+   
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        UITabBar.appearance().tintColor = UIColor.gray
+        //UITabBar.appearance().tintColor = UIColor.gray
         UITabBar.appearance().unselectedItemTintColor = UIColor.darkGray
+        //UITabBar.appearance().backgroundColor = UIColor(hex: 0xEADBC8)
         return true
     }
 

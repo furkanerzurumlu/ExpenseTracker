@@ -586,7 +586,7 @@
         <image name="arrow.down" catalog="system" width="118" height="128"/>
         <image name="arrow.up" catalog="system" width="118" height="128"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
-        <image name="circleChart" width="32" height="32"/>
+        <image name="circleChart" width="40" height="40"/>
         <image name="dollarsign.circle" catalog="system" width="128" height="123"/>
         <image name="donation" width="50" height="50"/>
         <image name="entertainment" width="32" height="32"/>

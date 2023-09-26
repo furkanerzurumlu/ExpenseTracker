@@ -60,6 +60,7 @@ class LogsFlow: UIViewController {
         setTabCollectionView()
         itemTableView.reloadData()
         
+        
         itemTableView.dataSource = self
         itemTableView.delegate = self
         itemTableView.register(ItemCell.nibName, forCellReuseIdentifier: ItemCell.identifer)

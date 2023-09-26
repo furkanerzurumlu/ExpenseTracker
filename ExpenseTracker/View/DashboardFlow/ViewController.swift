@@ -36,6 +36,9 @@ class ViewController: UIViewController {
         setTabBar()
         setupPieChart()
         
+        self.tabBarController!.tabBar.layer.borderWidth = 0.50
+        self.tabBarController!.tabBar.layer.borderColor = UIColor.gray.cgColor
+        self.tabBarController?.tabBar.clipsToBounds = true
         totalExpenditure()
         print("Total: \(viewModel.priceArray.count)")
         
@@ -54,10 +57,10 @@ class ViewController: UIViewController {
     
     
     func setTabBar(){
-        self.tabBarController?.tabBar.items?[0].image = UIImage(named: "circleChart")
-        self.tabBarController?.tabBar.items?[0].title = "Dashboard"
-        self.tabBarController?.tabBar.items?[1].image = UIImage(named: "document")
-        self.tabBarController?.tabBar.items?[1].title = "Logs"
+        self.tabBarController?.tabBar.items?[0].image = UIImage(named: "circleChart")?.withRenderingMode(.alwaysOriginal)
+        self.tabBarController?.tabBar.items?[0].title = ""
+        self.tabBarController?.tabBar.items?[1].image = UIImage(named: "document")?.withRenderingMode(.alwaysOriginal)
+        self.tabBarController?.tabBar.items?[1].title = ""
         
     }
     
