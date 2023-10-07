@@ -45,7 +45,32 @@ class ViewController: UIViewController {
         setTabBar()
         setupPieChart()
         
-        writeCategoryExpense()
+        let donationTotal = calculateCategoryTotal(category: "Donation", prices: viewModel.priceArray)
+        donationPriceLabel.text = donationTotal != 0 ? "$\(String(donationTotal))" : "$0"
+        donationPriceLabel.textColor = UIColor(hex: 0xFF5733)
+        
+        
+        let entertainmentTotal = calculateCategoryTotal(category: "Entertainment", prices: viewModel.priceArray)
+        entertainmentPrieceLabel.text = entertainmentTotal != 0 ? "$\(String(entertainmentTotal))" : "$0"
+        
+        let foodTotal = calculateCategoryTotal(category: "Food", prices: viewModel.priceArray)
+        foodPriceLabel.text = foodTotal != 0 ? "$\(String(foodTotal))" : "$0"
+        
+        let healthTotal = calculateCategoryTotal(category: "Health", prices: viewModel.priceArray)
+        healthPriceLabel.text = healthTotal != 0 ? "$\(String(healthTotal))" : "$0"
+        
+        let shoppingTotal = calculateCategoryTotal(category: "Shopping", prices: viewModel.priceArray)
+        shoppingPriceLabel.text = shoppingTotal != 0 ? "$\(String(shoppingTotal))" : "$0"
+        
+        let transportionTotal = calculateCategoryTotal(category: "Transportion", prices: viewModel.priceArray)
+        transportainPriceLabel.text = transportionTotal != 0 ? "$\(String(transportionTotal))" : "$0"
+        
+        let utilitiesTotal = calculateCategoryTotal(category: "Utilities", prices: viewModel.priceArray)
+        utilitiesPriceLabel.text = utilitiesTotal != 0 ? "$\(String(utilitiesTotal))" : "$0"
+        
+        let otherTotal = calculateCategoryTotal(category: "Other", prices: viewModel.priceArray)
+        otherPriceLabel.text = otherTotal != 0 ? "$\(String(otherTotal))" : "$0"
+
         
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor.gray.cgColor
@@ -66,64 +91,18 @@ class ViewController: UIViewController {
         viewModel.getAllData()
     }
     
-    func writeCategoryExpense(){
-        let newArray = viewModel.priceArray.filter { $0 != 0 }
-        print("Taze Array: \(newArray)")
-        
-        var categoryPriceDictionary = [String: Int]()
-
-        for (index, category) in viewModel.categoryNameArray.enumerated() {
-            let price = newArray[index]
+    func calculateCategoryTotal(category: String, prices: [Int]) -> Int{
+        let filteredPrices = prices.filter { $0 != 0 }
+            var total = 0
             
-            // Kategoriye göre toplam harcamayı sözlükte güncelleyin
-            if let existingPrice = categoryPriceDictionary[category] {
-                categoryPriceDictionary[category] = existingPrice + price
-            } else {
-                categoryPriceDictionary[category] = price
+            for (index, categoryName) in viewModel.categoryNameArray.enumerated() {
+                if categoryName == category {
+                    total += filteredPrices[index]
+                }
             }
-        }
-
-
-        for (category, price) in categoryPriceDictionary {
-            switch category {
-            case "Donation":
-                donationPriceLabel.text = String(price)
-            case "Entertainment":
-                entertainmentPrieceLabel.text = String(price)
-            case "Food":
-                foodPriceLabel.text = String(price)
-            case "Health":
-                healthPriceLabel.text = String(price)
-            case "Shopping":
-                shoppingPriceLabel.text = String(price)
-            case "Transportion":
-                transportainPriceLabel.text = String(price)
-            case "Utilities":
-                utilitiesPriceLabel.text = String(price)
-            case "Other":
-                otherPriceLabel.text = String(price)
-            default:
-                donationPriceLabel.text = "0"
-                entertainmentPrieceLabel.text = "0"
-                foodPriceLabel.text = "0"
-                healthPriceLabel.text = "0"
-                shoppingPriceLabel.text = "0"
-                transportainPriceLabel.text = "0"
-                utilitiesPriceLabel.text = "0"
-                otherPriceLabel.text = "0"
-                
-                
-                break
-            }
-        }
-
             
-//            if kategori == "Donation" {
-//                // Seçilen kategoriye yapılan ödemeyi toplam tutmaya ekleyin
-//                categoryPrice += newArray[index]
-//                donationPriceLabel.text = String(categoryPrice)
-//            }
-        
+            return total
+
     }
     
     
