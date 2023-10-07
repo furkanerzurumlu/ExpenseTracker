@@ -11,6 +11,15 @@ import DGCharts
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var donationPriceLabel: UILabel!
+    @IBOutlet weak var entertainmentPrieceLabel: UILabel!
+    @IBOutlet weak var foodPriceLabel: UILabel!
+    @IBOutlet weak var healthPriceLabel: UILabel!
+    @IBOutlet weak var shoppingPriceLabel: UILabel!
+    @IBOutlet weak var transportainPriceLabel: UILabel!
+    @IBOutlet weak var utilitiesPriceLabel: UILabel!
+    @IBOutlet weak var otherPriceLabel: UILabel!
+    
     @IBOutlet weak var pieView: PieChartView!
     
     @IBOutlet weak var totalPriceLabel: UILabel!
@@ -36,6 +45,8 @@ class ViewController: UIViewController {
         setTabBar()
         setupPieChart()
         
+        writeCategoryExpense()
+        
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor.gray.cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
@@ -53,6 +64,66 @@ class ViewController: UIViewController {
     }
     @objc func getData(){
         viewModel.getAllData()
+    }
+    
+    func writeCategoryExpense(){
+        let newArray = viewModel.priceArray.filter { $0 != 0 }
+        print("Taze Array: \(newArray)")
+        
+        var categoryPriceDictionary = [String: Int]()
+
+        for (index, category) in viewModel.categoryNameArray.enumerated() {
+            let price = newArray[index]
+            
+            // Kategoriye göre toplam harcamayı sözlükte güncelleyin
+            if let existingPrice = categoryPriceDictionary[category] {
+                categoryPriceDictionary[category] = existingPrice + price
+            } else {
+                categoryPriceDictionary[category] = price
+            }
+        }
+
+
+        for (category, price) in categoryPriceDictionary {
+            switch category {
+            case "Donation":
+                donationPriceLabel.text = String(price)
+            case "Entertainment":
+                entertainmentPrieceLabel.text = String(price)
+            case "Food":
+                foodPriceLabel.text = String(price)
+            case "Health":
+                healthPriceLabel.text = String(price)
+            case "Shopping":
+                shoppingPriceLabel.text = String(price)
+            case "Transportion":
+                transportainPriceLabel.text = String(price)
+            case "Utilities":
+                utilitiesPriceLabel.text = String(price)
+            case "Other":
+                otherPriceLabel.text = String(price)
+            default:
+                donationPriceLabel.text = "0"
+                entertainmentPrieceLabel.text = "0"
+                foodPriceLabel.text = "0"
+                healthPriceLabel.text = "0"
+                shoppingPriceLabel.text = "0"
+                transportainPriceLabel.text = "0"
+                utilitiesPriceLabel.text = "0"
+                otherPriceLabel.text = "0"
+                
+                
+                break
+            }
+        }
+
+            
+//            if kategori == "Donation" {
+//                // Seçilen kategoriye yapılan ödemeyi toplam tutmaya ekleyin
+//                categoryPrice += newArray[index]
+//                donationPriceLabel.text = String(categoryPrice)
+//            }
+        
     }
     
     

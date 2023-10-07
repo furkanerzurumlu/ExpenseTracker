@@ -265,8 +265,16 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" image="circleChart" id="adv-kw-zIF"/>
                     <connections>
+                        <outlet property="donationPriceLabel" destination="va8-03-VoK" id="Eik-bl-FWZ"/>
+                        <outlet property="entertainmentPrieceLabel" destination="Vb7-DN-jV8" id="zj4-vI-Z5I"/>
+                        <outlet property="foodPriceLabel" destination="gaH-VZ-X34" id="C94-Ti-5vr"/>
+                        <outlet property="healthPriceLabel" destination="dSh-fC-sNY" id="K5y-e1-wr6"/>
+                        <outlet property="otherPriceLabel" destination="2ej-Qh-tGJ" id="0EX-5Q-kR8"/>
                         <outlet property="pieView" destination="p5Y-eV-jvD" id="UVN-VK-QDp"/>
+                        <outlet property="shoppingPriceLabel" destination="oW3-8m-fbK" id="X6r-Va-iIt"/>
                         <outlet property="totalPriceLabel" destination="eKB-vC-8wt" id="Moj-KX-KKx"/>
+                        <outlet property="transportainPriceLabel" destination="A2D-VC-KYN" id="MjW-tK-6PG"/>
+                        <outlet property="utilitiesPriceLabel" destination="Aou-xv-ECu" id="7lc-Sf-hiw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
