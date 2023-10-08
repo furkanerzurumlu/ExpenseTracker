@@ -24,7 +24,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5Y-eV-jvD" customClass="PieChartView" customModule="DGCharts">
-                                <rect key="frame" x="20" y="151" width="335" height="218"/>
+                                <rect key="frame" x="20" y="151" width="335" height="197"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$999.99 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKB-vC-8wt">
@@ -33,8 +33,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lcE-sx-Olh">
-                                <rect key="frame" x="20" y="399" width="335" height="320"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="lcE-sx-Olh">
+                                <rect key="frame" x="20" y="378" width="335" height="341"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i7p-D7-L1w">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
@@ -63,7 +63,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="87E-fO-Buy">
-                                        <rect key="frame" x="0.0" y="40" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="43" width="335" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="entertainment" translatesAutoresizingMaskIntoConstraints="NO" id="hAU-aa-ZdY">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
@@ -89,7 +89,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gm1-jC-nAq">
-                                        <rect key="frame" x="0.0" y="80" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="86" width="335" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food" translatesAutoresizingMaskIntoConstraints="NO" id="uyp-UD-UKW">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
@@ -115,7 +115,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ldF-LL-wgq">
-                                        <rect key="frame" x="0.0" y="120" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="129" width="335" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="gGG-Di-7cY">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
@@ -141,7 +141,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bym-Kh-pVN">
-                                        <rect key="frame" x="0.0" y="160" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="172" width="335" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopping" translatesAutoresizingMaskIntoConstraints="NO" id="eUw-PI-qNA">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
@@ -167,7 +167,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dle-bY-ndW">
-                                        <rect key="frame" x="0.0" y="200" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="215" width="335" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transportion" translatesAutoresizingMaskIntoConstraints="NO" id="NEk-Kw-L3k">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
@@ -193,7 +193,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uwx-Va-ugl">
-                                        <rect key="frame" x="0.0" y="240" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="258" width="335" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="utilities" translatesAutoresizingMaskIntoConstraints="NO" id="k5u-tQ-Nk1">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
@@ -219,7 +219,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="knn-23-zYM">
-                                        <rect key="frame" x="0.0" y="280" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="301" width="335" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="other" translatesAutoresizingMaskIntoConstraints="NO" id="Gl3-hC-J6Q">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
@@ -266,15 +266,23 @@
                     <tabBarItem key="tabBarItem" title="Item" image="circleChart" id="adv-kw-zIF"/>
                     <connections>
                         <outlet property="donationPriceLabel" destination="va8-03-VoK" id="Eik-bl-FWZ"/>
+                        <outlet property="donationStackView" destination="i7p-D7-L1w" id="ett-u1-ryl"/>
                         <outlet property="entertainmentPrieceLabel" destination="Vb7-DN-jV8" id="zj4-vI-Z5I"/>
+                        <outlet property="entertainmentStackView" destination="87E-fO-Buy" id="rMu-lB-7ho"/>
                         <outlet property="foodPriceLabel" destination="gaH-VZ-X34" id="C94-Ti-5vr"/>
+                        <outlet property="foodStackView" destination="gm1-jC-nAq" id="Acz-iX-ixq"/>
                         <outlet property="healthPriceLabel" destination="dSh-fC-sNY" id="K5y-e1-wr6"/>
+                        <outlet property="healthStackView" destination="ldF-LL-wgq" id="eLg-VM-i5i"/>
                         <outlet property="otherPriceLabel" destination="2ej-Qh-tGJ" id="0EX-5Q-kR8"/>
+                        <outlet property="otherStackView" destination="knn-23-zYM" id="Eqw-NK-ZfO"/>
                         <outlet property="pieView" destination="p5Y-eV-jvD" id="UVN-VK-QDp"/>
                         <outlet property="shoppingPriceLabel" destination="oW3-8m-fbK" id="X6r-Va-iIt"/>
+                        <outlet property="shoppingStackView" destination="Bym-Kh-pVN" id="HYi-wS-bJ5"/>
                         <outlet property="totalPriceLabel" destination="eKB-vC-8wt" id="Moj-KX-KKx"/>
                         <outlet property="transportainPriceLabel" destination="A2D-VC-KYN" id="MjW-tK-6PG"/>
+                        <outlet property="transportionStackView" destination="Dle-bY-ndW" id="IgK-CM-2g5"/>
                         <outlet property="utilitiesPriceLabel" destination="Aou-xv-ECu" id="7lc-Sf-hiw"/>
+                        <outlet property="utilitiesStackView" destination="uwx-Va-ugl" id="sT0-d0-w9a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
