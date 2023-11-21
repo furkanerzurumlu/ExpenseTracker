@@ -171,31 +171,31 @@ class EditExpenseLogFlow: UIViewController {
         
     }
     @objc func saveButtonTapped() {
-        //                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        //                let managedContext = appDelegate.persistentContainer.viewContext
-        //
-        //                // Silmek istediğiniz Entity adını buraya girin
-        //                let entityName = "Expense"
-        //
-        //                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        //
-        //                // Silinecek tüm verileri çekmek için fetch request'i kullanın
-        //                do {
-        //                    let records = try managedContext.fetch(fetchRequest)
-        //                    for record in records {
-        //                        if let object = record as? NSManagedObject {
-        //                            // Her veriyi silebilirsiniz
-        //                            managedContext.delete(object)
-        //                        }
-        //                    }
-        //
-        //                    // Verileri kaydedin
-        //                    try managedContext.save()
-        //
-        //                    print("Tüm veriler başarıyla silindi.")
-        //                } catch {
-        //                    print("Hata oluştu: Veriler silinemedi.")
-        //                }
+//                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                        let managedContext = appDelegate.persistentContainer.viewContext
+//
+//                        // Silmek istediğiniz Entity adını buraya girin
+//                        let entityName = "Expense"
+//
+//                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+//
+//                        // Silinecek tüm verileri çekmek için fetch request'i kullanın
+//                        do {
+//                            let records = try managedContext.fetch(fetchRequest)
+//                            for record in records {
+//                                if let object = record as? NSManagedObject {
+//                                    // Her veriyi silebilirsiniz
+//                                    managedContext.delete(object)
+//                                }
+//                            }
+//
+//                            // Verileri kaydedin
+//                            try managedContext.save()
+//
+//                            print("Tüm veriler başarıyla silindi.")
+//                        } catch {
+//                            print("Hata oluştu: Veriler silinemedi.")
+//                        }
         
         
         
@@ -206,11 +206,11 @@ class EditExpenseLogFlow: UIViewController {
         if let priceText = priceTextField.text, let priceNumber = Double(priceText){
             viewModel.saveData(value: NSNumber(value: priceNumber), key: "price")
         }
-        
+
         viewModel.saveData(value: dateTextField.text!, key: "date")
         viewModel.saveData(value: categoryTextField.text!, key: "category")
-        
-        
+
+
         NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
         dismiss(animated: true, completion: nil)
         

@@ -60,6 +60,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="fnR-68-TWy"/>
+                                            <constraint firstAttribute="trailing" secondItem="va8-03-VoK" secondAttribute="trailing" constant="5" id="mcO-Bz-RXH"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="87E-fO-Buy">
@@ -275,6 +276,7 @@
                         <outlet property="healthStackView" destination="ldF-LL-wgq" id="eLg-VM-i5i"/>
                         <outlet property="otherPriceLabel" destination="2ej-Qh-tGJ" id="0EX-5Q-kR8"/>
                         <outlet property="otherStackView" destination="knn-23-zYM" id="Eqw-NK-ZfO"/>
+                        <outlet property="pieChartView" destination="p5Y-eV-jvD" id="4WR-nX-Tzp"/>
                         <outlet property="pieView" destination="p5Y-eV-jvD" id="UVN-VK-QDp"/>
                         <outlet property="shoppingPriceLabel" destination="oW3-8m-fbK" id="X6r-Va-iIt"/>
                         <outlet property="shoppingStackView" destination="Bym-Kh-pVN" id="HYi-wS-bJ5"/>

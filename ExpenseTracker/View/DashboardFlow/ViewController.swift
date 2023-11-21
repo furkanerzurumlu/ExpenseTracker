@@ -11,6 +11,7 @@ import DGCharts
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var pieChartView: PieChartView!
     
     @IBOutlet weak var donationStackView: UIStackView!
     @IBOutlet weak var entertainmentStackView: UIStackView!
@@ -47,6 +48,7 @@ class ViewController: UIViewController {
     
     var viewModel = DashboardVM()
     var totalPrice = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -120,63 +122,70 @@ class ViewController: UIViewController {
         
         let donationTotal = calculateCategoryTotal(category: "Donation", prices: viewModel.priceArray)
         donationPriceLabel.text = donationTotal != 0 ? "$\(String(donationTotal))" : "$0"
-//        donationPriceLabel.textColor = UIColor(hex: 0x007AFF)
         
         let entertainmentTotal = calculateCategoryTotal(category: "Entertainment", prices: viewModel.priceArray)
         entertainmentPrieceLabel.text = entertainmentTotal != 0 ? "$\(String(entertainmentTotal))" : "$0"
-//        entertainmentPrieceLabel.textColor = UIColor(hex: 0xFF9500)
         
         let foodTotal = calculateCategoryTotal(category: "Food", prices: viewModel.priceArray)
         foodPriceLabel.text = foodTotal != 0 ? "$\(String(foodTotal))" : "$0"
-        foodPriceLabel.textColor = UIColor(hex: 0x4CD964)
         
         let healthTotal = calculateCategoryTotal(category: "Health", prices: viewModel.priceArray)
         healthPriceLabel.text = healthTotal != 0 ? "$\(String(healthTotal))" : "$0"
-        healthPriceLabel.textColor = UIColor(hex: 0xFF2D55)
         
         let shoppingTotal = calculateCategoryTotal(category: "Shopping", prices: viewModel.priceArray)
         shoppingPriceLabel.text = shoppingTotal != 0 ? "$\(String(shoppingTotal))" : "$0"
-        shoppingPriceLabel.textColor = UIColor(hex: 0x5856D6)
         
         let transportionTotal = calculateCategoryTotal(category: "Transportion", prices: viewModel.priceArray)
         transportainPriceLabel.text = transportionTotal != 0 ? "$\(String(transportionTotal))" : "$0"
-        transportainPriceLabel.textColor = UIColor(hex: 0xFFCC00)
         
         let utilitiesTotal = calculateCategoryTotal(category: "Utilities", prices: viewModel.priceArray)
         utilitiesPriceLabel.text = utilitiesTotal != 0 ? "$\(String(utilitiesTotal))" : "$0"
-        utilitiesPriceLabel.textColor = UIColor(hex: 0x34C759)
         
         let otherTotal = calculateCategoryTotal(category: "Other", prices: viewModel.priceArray)
         otherPriceLabel.text = otherTotal != 0 ? "$\(String(otherTotal))" : "$0"
-        otherPriceLabel.textColor = UIColor(hex: 0xFF3B30)
         
-        let values: [Double] = [donationTotal, entertainmentTotal, foodTotal, healthTotal, shoppingTotal, transportionTotal, utilitiesTotal, otherTotal]
+        let values: [Double] = [donationTotal,
+                                entertainmentTotal,
+                                foodTotal,
+                                healthTotal,
+                                shoppingTotal,
+                                transportionTotal,
+                                utilitiesTotal,
+                                otherTotal]
         
-       
+        let total = values.reduce(0, +)
+        
+//        for (index, value) in values.enumerated() {
+//            let entry = PieChartDataEntry(value: value, label: "Segment \(index)")
+//            dataEntries.append(entry)
+//        }
         for (index, value) in values.enumerated() {
-            let entry = PieChartDataEntry(value: value, label: "Segment \(index)")
+            let percentage = (value / total) * 100.0
+            let entry = PieChartDataEntry(value: percentage, label: "\(index)")
             dataEntries.append(entry)
         }
         
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
         
         
-        
         dataSet.colors = colors
         dataSet.valueTextColor = .black
-        dataSet.entryLabelColor = .white
+        dataSet.entryLabelColor = .black
         dataSet.sliceSpace = 3
         
+        let data = PieChartData(dataSet: dataSet)
+        pieView.data = data
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .percent
         numberFormatter.maximumFractionDigits = 1
         numberFormatter.multiplier = 1
-        numberFormatter.percentSymbol = "%"
-        dataSet.valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
+        numberFormatter.percentSymbol = " %"
         
-        let data = PieChartData(dataSet: dataSet)
-        pieView.data = data
+        data.setValueFormatter(DefaultValueFormatter(formatter: numberFormatter))
+//        dataSet.valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
+        
+        
         
         pieView.legend.enabled = true
         pieView.drawEntryLabelsEnabled = false
