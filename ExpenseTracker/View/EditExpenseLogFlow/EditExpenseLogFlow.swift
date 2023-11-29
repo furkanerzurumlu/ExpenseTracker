@@ -211,7 +211,8 @@ class EditExpenseLogFlow: UIViewController {
         viewModel.saveData(value: categoryTextField.text!, key: "category")
 
 
-        NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
+//        NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
         dismiss(animated: true, completion: nil)
         
         

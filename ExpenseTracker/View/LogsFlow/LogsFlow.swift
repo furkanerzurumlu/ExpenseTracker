@@ -73,10 +73,10 @@ class LogsFlow: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
-        //NotificationCenter.default.removeObserver("newData")
-        viewModel.getAllData()
-        itemTableView.reloadData()
         
+        viewModel.getAllData()
+        //itemTableView.reloadData()
+        viewModel.delegate?.refreshTableView()
         
     }
     
@@ -271,9 +271,11 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row < filterProductName.count {
                 
                 cell.productLabelText.text = "\(filterProductName[indexPath.row])"
+                print("BUGFİX: \(filterProductName[indexPath.row])")
             } else {
-                cell.productLabelText.text = "--"
-                
+//                cell.productLabelText.text = "Neden böyle oldu"
+//                cell.productLabelText.text = "\(filterProductName[indexPath.row])"
+                cell.productLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
             }
             
             if indexPath.row < viewModel.priceArray.count {
@@ -487,8 +489,6 @@ extension LogsFlow: UISearchBarDelegate {
     }
 }
 
-
-
 extension LogsFlow: LogsFlowVMDelegate {
     func refreshTableView() {
         DispatchQueue.main.async {
@@ -496,5 +496,20 @@ extension LogsFlow: LogsFlowVMDelegate {
         }
     }
     
-    
+    func controllerDidChangeContent() {
+        DispatchQueue.main.async {
+            self.itemTableView.reloadData()
+        }
+    }
 }
+
+
+//extension LogsFlow: LogsFlowVMDelegate {
+//    func refreshTableView() {
+//        DispatchQueue.main.async {
+//            self.itemTableView.reloadData()
+//        }
+//    }
+//    
+//    
+//}
