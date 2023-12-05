@@ -153,28 +153,31 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         refreshTableView()
         selectedIndex = indexPath
         collectionView.reloadData()
         
         let selectedCategory = categories[indexPath.item]
-        
         var selectedCategoryTitle = selectedCategory.title.trimmingCharacters(in: .whitespacesAndNewlines)
         
         print("Seçilen Kategori: \(selectedCategoryTitle)")
         
-        let categoryArray = viewModel.categoryNameArray
-        
-        viewModel.filterDataValue = selectedCategoryTitle
-        print("Deneme123 : \(viewModel.filterDataValue)")
-        
-        print("All Category :\(categoryArray)")
-        let cellToReload = categoryArray.filter{ $0 == selectedCategoryTitle}
-        
-        print("Filtrelenmiş Array:\( cellToReload)")
-        
-        viewModel.filteredItemsArray = cellToReload
-        
+        if selectedCategoryTitle == "All" {
+            
+            viewModel.filterDataValue = ""
+            viewModel.filteredItemsArray = []
+            
+            selectedCell?.backgroundColor = UIColor.clear
+            selectedCell?.titleLabel.textColor = UIColor.gray
+            selectedCell = nil
+            selectedIndex = nil
+        } else {
+            viewModel.filterDataValue = selectedCategoryTitle
+            
+            let cellToReload = viewModel.categoryNameArray.filter { $0 == selectedCategoryTitle }
+            viewModel.filteredItemsArray = cellToReload
+        }
         
         
     }
@@ -271,10 +274,9 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row < filterProductName.count {
                 
                 cell.productLabelText.text = "\(filterProductName[indexPath.row])"
-                print("BUGFİX: \(filterProductName[indexPath.row])")
+                //                print("BUGFİX: \(filterProductName[indexPath.row])")
             } else {
-//                cell.productLabelText.text = "Neden böyle oldu"
-//                cell.productLabelText.text = "\(filterProductName[indexPath.row])"
+                //                cell.productLabelText.text = "\(filterProductName[indexPath.row])"
                 cell.productLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
             }
             
@@ -479,13 +481,19 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
 extension LogsFlow: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if searchText.isEmpty == true {
+        if searchText.isEmpty {
             filterProductName = viewModel.productNameArray
-            
         } else {
             filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
         }
         refreshTableView()
+        //        if searchText.isEmpty == true {
+        //            filterProductName = viewModel.productNameArray
+        //
+        //        } else {
+        //            filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
+        //        }
+        //        refreshTableView()
     }
 }
 
@@ -510,6 +518,6 @@ extension LogsFlow: LogsFlowVMDelegate {
 //            self.itemTableView.reloadData()
 //        }
 //    }
-//    
-//    
+//
+//
 //}
