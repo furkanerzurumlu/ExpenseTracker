@@ -72,20 +72,21 @@ class ViewController: UIViewController {
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor.gray.cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
-        totalExpenditure()
+        //totalExpenditure()
         print("Total: \(viewModel.priceArray.count)")
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
+       //NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
         //NotificationCenter.default.removeObserver("newData")
         viewModel.getAllData()
 
-        
+        //totalExpenditure()
         
     }
     @objc func getData(){
-        viewModel.getAllData()
+            self.viewModel.getAllData()
+            //self.totalExpenditure()
     }
     
     func calculateCategoryTotal(category: String, prices: [Int]) -> Double{
@@ -144,6 +145,9 @@ class ViewController: UIViewController {
         let otherTotal = calculateCategoryTotal(category: "Other", prices: viewModel.priceArray)
         otherPriceLabel.text = otherTotal != 0 ? "$\(String(otherTotal))" : "$0"
         
+        print("asdasdasd")
+        print(donationTotal+entertainmentTotal+foodTotal+healthTotal+shoppingTotal+transportionTotal+utilitiesTotal+utilitiesTotal+otherTotal)
+        
         let values: [Double] = [donationTotal,
                                 entertainmentTotal,
                                 foodTotal,
@@ -155,6 +159,7 @@ class ViewController: UIViewController {
         
         let total = values.reduce(0, +)
         
+        self.totalPriceLabel.text = "$\(total).00"
 //        for (index, value) in values.enumerated() {
 //            let entry = PieChartDataEntry(value: value, label: "Segment \(index)")
 //            dataEntries.append(entry)
@@ -183,9 +188,6 @@ class ViewController: UIViewController {
         numberFormatter.percentSymbol = " %"
         
         data.setValueFormatter(DefaultValueFormatter(formatter: numberFormatter))
-//        dataSet.valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
-        
-        
         
         pieView.legend.enabled = true
         pieView.drawEntryLabelsEnabled = false
@@ -198,10 +200,11 @@ class ViewController: UIViewController {
         for index in viewModel.priceArray {
             if let intValue = index as? Int {
                 totalPrice += intValue
-//                print("Total Price: \(totalPrice)")
-                totalPriceLabel.text = "$\(totalPrice).00"
+//                totalPriceLabel.text = "$\(totalPrice).00"
             }
-            
+            DispatchQueue.main.async {
+                self.totalPriceLabel.text = "$\(self.totalPrice) "
+            }
         }
     }
     

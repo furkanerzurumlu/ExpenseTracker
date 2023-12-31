@@ -33,33 +33,7 @@ class DashboardVM {
     var categoryNameArray = [String]()
     
     func getAllData(){
-        //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        //        let context = appDelegate.persistentContainer.viewContext
-        //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
-        //        fetchRequest.returnsObjectsAsFaults = false
-        //
-        //        do{
-        //            let results = try context.fetch(fetchRequest)
-        //            for result in results as! [NSManagedObject]{
-        //
-        //                if let id = result.value(forKey: "id") as? UUID {
-        //                    self.idArray.append(id)
-        //                }
-        //                if let date = result.value(forKey: "date") as? String {
-        //                    self.dateArray.append(date)
-        //                }
-        //                if let product = result.value(forKey: "product") as? String {
-        //                    self.productNameArray.append(product)
-        //                }
-        //                if let category = result.value(forKey: "category") as? String {
-        //                    self.categoryNameArray.append(category)
-        //                }
-        //
-        //                delegate?.refreshTableView()
-        //            }
-        //        } catch {
-        //
-        //        }
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
@@ -67,11 +41,7 @@ class DashboardVM {
         
         do {
             let results = try context.fetch(fetchRequest)
-//            var idArray = [UUID]()
-//            var dateArray = [String]()
-//            var productNameArray = [String]()
-//            var priceArray = [Int]()
-//            var categoryNameArray = [String]()
+            
             var idArray = [UUID]()
             var dateArray = [String]()
             var priceArray = [Int]()
@@ -108,6 +78,7 @@ class DashboardVM {
         } catch {
             print("Error fetching data: \(error)")
         }
+        NotificationCenter.default.post(name: NSNotification.Name("DashboardDataUpdated"), object: nil)
     }
     
     

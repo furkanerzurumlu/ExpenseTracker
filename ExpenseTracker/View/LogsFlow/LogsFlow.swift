@@ -501,6 +501,7 @@ extension LogsFlow: LogsFlowVMDelegate {
     func refreshTableView() {
         DispatchQueue.main.async {
             self.itemTableView.reloadData()
+            
         }
     }
     
