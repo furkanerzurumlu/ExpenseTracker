@@ -483,17 +483,20 @@ extension LogsFlow: UISearchBarDelegate {
         
         if searchText.isEmpty {
             filterProductName = viewModel.productNameArray
+            refreshTableView()
         } else {
             filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
+            refreshTableView()
         }
-        refreshTableView()
-        //        if searchText.isEmpty == true {
-        //            filterProductName = viewModel.productNameArray
-        //
-        //        } else {
-        //            filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
-        //        }
-        //        refreshTableView()
+        //refreshTableView()
+        
+//                if searchText.isEmpty == true {
+//                    filterProductName = viewModel.productNameArray
+//        
+//                } else {
+//                    filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
+//                }
+//                refreshTableView()
     }
 }
 

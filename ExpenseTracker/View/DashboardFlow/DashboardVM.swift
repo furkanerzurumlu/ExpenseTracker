@@ -5,20 +5,10 @@
 //  Created by Furkan Erzurumlu on 20.08.2023.
 //
 
-import Foundation
-//
-//  LogsFlowVM.swift
-//  ExpenseTracker
-//
-//  Created by Furkan Erzurumlu on 31.07.2023.
-//
 
 import Foundation
 import UIKit
 import CoreData
-
-
-
 
 class DashboardVM {
     

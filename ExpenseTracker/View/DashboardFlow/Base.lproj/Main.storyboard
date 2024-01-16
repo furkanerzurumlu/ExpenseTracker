@@ -471,7 +471,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBQ-8h-eIm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1998" y="405"/>
+            <point key="canvasLocation" x="2009" y="350"/>
         </scene>
         <!--Edit Expense Log Flow-->
         <scene sceneID="Md9-Iu-09k">
@@ -584,7 +584,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hbE-D9-KXC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3815.1999999999998" y="-76.108374384236456"/>
+            <point key="canvasLocation" x="3772" y="-28"/>
         </scene>
         <!--Item-->
         <scene sceneID="aiE-wW-UOC">
@@ -621,7 +621,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lA3-cr-ECH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2872.8000000000002" y="-76.108374384236456"/>
+            <point key="canvasLocation" x="2841" y="-27"/>
         </scene>
     </scenes>
     <resources>

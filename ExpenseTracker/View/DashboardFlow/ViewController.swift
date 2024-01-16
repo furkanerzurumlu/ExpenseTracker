@@ -159,7 +159,7 @@ class ViewController: UIViewController {
         
         let total = values.reduce(0, +)
         
-        self.totalPriceLabel.text = "$\(total).00"
+        self.totalPriceLabel.text = "$\(total)"
 //        for (index, value) in values.enumerated() {
 //            let entry = PieChartDataEntry(value: value, label: "Segment \(index)")
 //            dataEntries.append(entry)
