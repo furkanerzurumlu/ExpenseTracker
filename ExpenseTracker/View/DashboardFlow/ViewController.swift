@@ -122,7 +122,7 @@ class ViewController: UIViewController {
         var dataEntries: [ChartDataEntry] = []
         
         let donationTotal = calculateCategoryTotal(category: "Donation", prices: viewModel.priceArray)
-        donationPriceLabel.text = donationTotal != 0 ? "$\(String(donationTotal))" : "$0"
+        donationPriceLabel.text = donationTotal != 0 ? "$\(String(donationTotal))  " : "$0"
         
         let entertainmentTotal = calculateCategoryTotal(category: "Entertainment", prices: viewModel.priceArray)
         entertainmentPrieceLabel.text = entertainmentTotal != 0 ? "$\(String(entertainmentTotal))" : "$0"
