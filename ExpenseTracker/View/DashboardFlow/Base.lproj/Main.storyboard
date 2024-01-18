@@ -49,29 +49,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leU-On-p9z">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="40"/>
                                                 <constraints>
-<<<<<<< HEAD
                                                     <constraint firstAttribute="width" constant="200" id="r1y-F7-DQJ"/>
-=======
-<<<<<<< HEAD
-                                                    <constraint firstAttribute="width" constant="200" id="4CV-VM-SJx"/>
-=======
-                                                    <constraint firstAttribute="width" constant="200" id="iJs-DL-9ze"/>
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="va8-03-VoK">
-=======
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="va8-03-VoK">
-=======
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="va8-03-VoK">
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 <rect key="frame" x="270" y="0.0" width="65" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -94,29 +78,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entertainment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eid-mQ-3qX">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="40"/>
                                                 <constraints>
-<<<<<<< HEAD
                                                     <constraint firstAttribute="width" constant="200" id="T8z-dq-qPT"/>
-=======
-<<<<<<< HEAD
-                                                    <constraint firstAttribute="width" constant="200" id="kMw-wv-pU6"/>
-=======
-                                                    <constraint firstAttribute="width" constant="200" id="r6i-u6-H6d"/>
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vb7-DN-jV8">
-=======
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vb7-DN-jV8">
-=======
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vb7-DN-jV8">
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 <rect key="frame" x="270" y="0.0" width="65" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -139,29 +107,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcg-Pp-NKZ">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="40"/>
                                                 <constraints>
-<<<<<<< HEAD
                                                     <constraint firstAttribute="width" constant="200" id="JEk-xk-MXy"/>
-=======
-<<<<<<< HEAD
-                                                    <constraint firstAttribute="width" constant="200" id="n4h-Z5-rRH"/>
-=======
-                                                    <constraint firstAttribute="width" constant="200" id="6Ly-GI-ndU"/>
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaH-VZ-X34">
-=======
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaH-VZ-X34">
-=======
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaH-VZ-X34">
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 <rect key="frame" x="270" y="0.0" width="65" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -184,29 +136,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Health" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdc-Qq-Pno">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="40"/>
                                                 <constraints>
-<<<<<<< HEAD
                                                     <constraint firstAttribute="width" constant="200" id="yXB-Wu-p4f"/>
-=======
-<<<<<<< HEAD
-                                                    <constraint firstAttribute="width" constant="200" id="IyP-7d-pxS"/>
-=======
-                                                    <constraint firstAttribute="width" constant="200" id="o3T-Yq-C9w"/>
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSh-fC-sNY">
-=======
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSh-fC-sNY">
-=======
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSh-fC-sNY">
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 <rect key="frame" x="270" y="0.0" width="65" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -229,29 +165,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gwl-5a-eGt">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="40"/>
                                                 <constraints>
-<<<<<<< HEAD
                                                     <constraint firstAttribute="width" constant="200" id="x75-9Q-spU"/>
-=======
-<<<<<<< HEAD
-                                                    <constraint firstAttribute="width" constant="200" id="8uv-Yy-lsX"/>
-=======
-                                                    <constraint firstAttribute="width" constant="200" id="NTl-zf-7Eh"/>
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW3-8m-fbK">
-=======
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW3-8m-fbK">
-=======
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW3-8m-fbK">
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 <rect key="frame" x="270" y="0.0" width="65" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -271,35 +191,16 @@
                                                     <constraint firstAttribute="width" constant="50" id="eGB-98-Bhv"/>
                                                 </constraints>
                                             </imageView>
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transportation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BX-LH-kWF">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="ISl-vi-o8p"/>
-=======
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transportion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BX-LH-kWF">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="40"/>
                                                 <constraints>
-<<<<<<< HEAD
                                                     <constraint firstAttribute="width" constant="200" id="eif-X3-0M8"/>
-=======
-                                                    <constraint firstAttribute="width" constant="200" id="utA-I6-Qoh"/>
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2D-VC-KYN">
-=======
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2D-VC-KYN">
-=======
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2D-VC-KYN">
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 <rect key="frame" x="270" y="0.0" width="65" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -322,29 +223,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Utilities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Liu-KO-pws">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="40"/>
                                                 <constraints>
-<<<<<<< HEAD
                                                     <constraint firstAttribute="width" constant="200" id="Zza-Jc-Bja"/>
-=======
-<<<<<<< HEAD
-                                                    <constraint firstAttribute="width" constant="200" id="wKS-pP-8Am"/>
-=======
-                                                    <constraint firstAttribute="width" constant="200" id="Ifc-oz-reb"/>
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aou-xv-ECu">
-=======
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aou-xv-ECu">
-=======
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aou-xv-ECu">
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 <rect key="frame" x="270" y="0.0" width="65" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -367,29 +252,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZQ-gx-CEt">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="40"/>
                                                 <constraints>
-<<<<<<< HEAD
                                                     <constraint firstAttribute="width" constant="200" id="8PK-Ea-dz5"/>
-=======
-<<<<<<< HEAD
-                                                    <constraint firstAttribute="width" constant="200" id="56B-eh-0is"/>
-=======
-                                                    <constraint firstAttribute="width" constant="200" id="SdA-xf-PC5"/>
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ej-Qh-tGJ">
-=======
-<<<<<<< HEAD
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ej-Qh-tGJ">
-=======
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ej-Qh-tGJ">
->>>>>>> 0b4f705310e5e22bb03a1c01e2424da17f14a11e
->>>>>>> b4768f7abde5ce525a48c277f16d6dda849313ea
                                                 <rect key="frame" x="270" y="0.0" width="65" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
