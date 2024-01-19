@@ -47,16 +47,16 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leU-On-p9z">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                                                <rect key="frame" x="60" y="0.0" width="210" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="r1y-F7-DQJ"/>
+                                                    <constraint firstAttribute="width" constant="210" id="r1y-F7-DQJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="va8-03-VoK">
-                                                <rect key="frame" x="270" y="0.0" width="65" height="40"/>
+                                                <rect key="frame" x="280" y="0.0" width="55" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -76,16 +76,16 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entertainment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eid-mQ-3qX">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                                                <rect key="frame" x="60" y="0.0" width="210" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="T8z-dq-qPT"/>
+                                                    <constraint firstAttribute="width" constant="210" id="T8z-dq-qPT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vb7-DN-jV8">
-                                                <rect key="frame" x="270" y="0.0" width="65" height="40"/>
+                                                <rect key="frame" x="280" y="0.0" width="55" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -105,16 +105,16 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcg-Pp-NKZ">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                                                <rect key="frame" x="60" y="0.0" width="210" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="JEk-xk-MXy"/>
+                                                    <constraint firstAttribute="width" constant="210" id="JEk-xk-MXy"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaH-VZ-X34">
-                                                <rect key="frame" x="270" y="0.0" width="65" height="40"/>
+                                                <rect key="frame" x="280" y="0.0" width="55" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -134,16 +134,16 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Health" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdc-Qq-Pno">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                                                <rect key="frame" x="60" y="0.0" width="210" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="yXB-Wu-p4f"/>
+                                                    <constraint firstAttribute="width" constant="210" id="yXB-Wu-p4f"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSh-fC-sNY">
-                                                <rect key="frame" x="270" y="0.0" width="65" height="40"/>
+                                                <rect key="frame" x="280" y="0.0" width="55" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -163,16 +163,16 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gwl-5a-eGt">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                                                <rect key="frame" x="60" y="0.0" width="210" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="x75-9Q-spU"/>
+                                                    <constraint firstAttribute="width" constant="210" id="x75-9Q-spU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW3-8m-fbK">
-                                                <rect key="frame" x="270" y="0.0" width="65" height="40"/>
+                                                <rect key="frame" x="280" y="0.0" width="55" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -191,17 +191,17 @@
                                                     <constraint firstAttribute="width" constant="50" id="eGB-98-Bhv"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transportion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BX-LH-kWF">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transportation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BX-LH-kWF">
+                                                <rect key="frame" x="60" y="0.0" width="210" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="eif-X3-0M8"/>
+                                                    <constraint firstAttribute="width" constant="210" id="eif-X3-0M8"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2D-VC-KYN">
-                                                <rect key="frame" x="270" y="0.0" width="65" height="40"/>
+                                                <rect key="frame" x="280" y="0.0" width="55" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -221,16 +221,16 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Utilities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Liu-KO-pws">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                                                <rect key="frame" x="60" y="0.0" width="210" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="Zza-Jc-Bja"/>
+                                                    <constraint firstAttribute="width" constant="210" id="Zza-Jc-Bja"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aou-xv-ECu">
-                                                <rect key="frame" x="270" y="0.0" width="65" height="40"/>
+                                                <rect key="frame" x="280" y="0.0" width="55" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -250,16 +250,16 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZQ-gx-CEt">
-                                                <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                                                <rect key="frame" x="60" y="0.0" width="210" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="8PK-Ea-dz5"/>
+                                                    <constraint firstAttribute="width" constant="210" id="8PK-Ea-dz5"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ej-Qh-tGJ">
-                                                <rect key="frame" x="270" y="0.0" width="65" height="40"/>
+                                                <rect key="frame" x="280" y="0.0" width="55" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -313,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1096.8" y="-407.14285714285717"/>
+            <point key="canvasLocation" x="1089" y="-403"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PZH-16-da3">
