@@ -21,7 +21,7 @@ class EditExpenseLogFlow: UIViewController {
     
     private var datePicker = UIDatePicker()
     private let pickerView = UIPickerView()
-    private let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportion","Utilities","Other"]
+    private let categoryOptions = ["Donation","Entertainment","Food","Health","Shopping","Transportation","Utilities","Other"]
     
     var viewModel = EditExpenseLogVM()
     

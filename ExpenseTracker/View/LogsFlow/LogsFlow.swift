@@ -20,7 +20,7 @@ let categories: [Category] = [
     Category(title: "Entertainment"),
     Category(title: "Health"),
     Category(title: "Shopping"),
-    Category(title: "Transportion"),
+    Category(title: "Transportation"),
     Category(title: "Utilities"),
     Category(title: "Other"),
 ]
@@ -308,7 +308,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
                 case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
                 case "Health": cell.categoryImageView.image = UIImage(named: "health")
                 case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
-                case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
+                case "Transportation": cell.categoryImageView.image = UIImage(named: "transportation")
                 case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
                     
                     
@@ -343,7 +343,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
                 case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
                 case "Health": cell.categoryImageView.image = UIImage(named: "health")
                 case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
-                case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
+                case "Transportation": cell.categoryImageView.image = UIImage(named: "transportation")
                 case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
                     
                     

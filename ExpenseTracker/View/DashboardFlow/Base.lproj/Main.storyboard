@@ -185,7 +185,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dle-bY-ndW">
                                         <rect key="frame" x="0.0" y="215" width="335" height="40"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transportion" translatesAutoresizingMaskIntoConstraints="NO" id="NEk-Kw-L3k">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transportation" translatesAutoresizingMaskIntoConstraints="NO" id="NEk-Kw-L3k">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="eGB-98-Bhv"/>
@@ -305,8 +305,8 @@
                         <outlet property="shoppingPriceLabel" destination="oW3-8m-fbK" id="X6r-Va-iIt"/>
                         <outlet property="shoppingStackView" destination="Bym-Kh-pVN" id="HYi-wS-bJ5"/>
                         <outlet property="totalPriceLabel" destination="eKB-vC-8wt" id="Moj-KX-KKx"/>
-                        <outlet property="transportainPriceLabel" destination="A2D-VC-KYN" id="MjW-tK-6PG"/>
-                        <outlet property="transportionStackView" destination="Dle-bY-ndW" id="IgK-CM-2g5"/>
+                        <outlet property="transportationStackView" destination="Dle-bY-ndW" id="IgK-CM-2g5"/>
+                        <outlet property="transportatoinPriceLabel" destination="A2D-VC-KYN" id="MjW-tK-6PG"/>
                         <outlet property="utilitiesPriceLabel" destination="Aou-xv-ECu" id="7lc-Sf-hiw"/>
                         <outlet property="utilitiesStackView" destination="uwx-Va-ugl" id="sT0-d0-w9a"/>
                     </connections>
@@ -636,7 +636,7 @@
         <image name="health" width="50" height="50"/>
         <image name="other" width="50" height="50"/>
         <image name="shopping" width="32" height="32"/>
-        <image name="transportion" width="32" height="32"/>
+        <image name="transportation" width="32" height="32"/>
         <image name="utilities" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

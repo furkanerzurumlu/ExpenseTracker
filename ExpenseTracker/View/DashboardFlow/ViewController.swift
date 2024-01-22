@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var foodStackView: UIStackView!
     @IBOutlet weak var healthStackView: UIStackView!
     @IBOutlet weak var shoppingStackView: UIStackView!
-    @IBOutlet weak var transportionStackView: UIStackView!
+    @IBOutlet weak var transportationStackView: UIStackView!
     @IBOutlet weak var utilitiesStackView: UIStackView!
     @IBOutlet weak var otherStackView: UIStackView!
     
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var foodPriceLabel: UILabel!
     @IBOutlet weak var healthPriceLabel: UILabel!
     @IBOutlet weak var shoppingPriceLabel: UILabel!
-    @IBOutlet weak var transportainPriceLabel: UILabel!
+    @IBOutlet weak var transportatoinPriceLabel: UILabel!
     @IBOutlet weak var utilitiesPriceLabel: UILabel!
     @IBOutlet weak var otherPriceLabel: UILabel!
     
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         setCategoryStackView(stackView: foodStackView, colorHex: colors[2])
         setCategoryStackView(stackView: healthStackView, colorHex: colors[3])
         setCategoryStackView(stackView: shoppingStackView, colorHex: colors[4])
-        setCategoryStackView(stackView: transportionStackView, colorHex: colors[5])
+        setCategoryStackView(stackView: transportationStackView, colorHex: colors[5])
         setCategoryStackView(stackView: utilitiesStackView, colorHex: colors[6])
         setCategoryStackView(stackView: otherStackView, colorHex: colors[7])
 
@@ -136,8 +136,8 @@ class ViewController: UIViewController {
         let shoppingTotal = calculateCategoryTotal(category: "Shopping", prices: viewModel.priceArray)
         shoppingPriceLabel.text = shoppingTotal != 0 ? "$\(String(shoppingTotal))" : "$0"
         
-        let transportionTotal = calculateCategoryTotal(category: "Transportion", prices: viewModel.priceArray)
-        transportainPriceLabel.text = transportionTotal != 0 ? "$\(String(transportionTotal))" : "$0"
+        let transportationTotal = calculateCategoryTotal(category: "Transportation", prices: viewModel.priceArray)
+        transportatoinPriceLabel.text = transportationTotal != 0 ? "$\(String(transportationTotal))" : "$0"
         
         let utilitiesTotal = calculateCategoryTotal(category: "Utilities", prices: viewModel.priceArray)
         utilitiesPriceLabel.text = utilitiesTotal != 0 ? "$\(String(utilitiesTotal))" : "$0"
@@ -146,14 +146,14 @@ class ViewController: UIViewController {
         otherPriceLabel.text = otherTotal != 0 ? "$\(String(otherTotal))" : "$0"
         
         print("asdasdasd")
-        print(donationTotal+entertainmentTotal+foodTotal+healthTotal+shoppingTotal+transportionTotal+utilitiesTotal+utilitiesTotal+otherTotal)
+        print(donationTotal+entertainmentTotal+foodTotal+healthTotal+shoppingTotal+transportationTotal+utilitiesTotal+utilitiesTotal+otherTotal)
         
         let values: [Double] = [donationTotal,
                                 entertainmentTotal,
                                 foodTotal,
                                 healthTotal,
                                 shoppingTotal,
-                                transportionTotal,
+                                transportationTotal,
                                 utilitiesTotal,
                                 otherTotal]
         
