@@ -145,7 +145,6 @@ class ViewController: UIViewController {
         let otherTotal = calculateCategoryTotal(category: "Other", prices: viewModel.priceArray)
         otherPriceLabel.text = otherTotal != 0 ? "$\(String(otherTotal))" : "$0"
         
-        print("asdasdasd")
         print(donationTotal+entertainmentTotal+foodTotal+healthTotal+shoppingTotal+transportationTotal+utilitiesTotal+utilitiesTotal+otherTotal)
         
         let values: [Double] = [donationTotal,

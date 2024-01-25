@@ -265,10 +265,10 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         var matchingIndex: [Int] = []
         //        print("ViewModel filter Data Test: \(viewModel.filteredItemsArray)")
         
-        print("Normal şekilde yazdırabilrisniz: \(String(describing: viewModel.filterDataValue))")
+        //print("Normal şekilde yazdırabilrisniz: \(String(describing: viewModel.filterDataValue))")
         
         if (viewModel.filterDataValue == "All   " || viewModel.filterDataValue == ""){
-            print("xxxxxxxxx")
+//            print("xxxxxxxxx")
             
             
             if indexPath.row < filterProductName.count {
@@ -285,8 +285,8 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
                 let newArray = viewModel.priceArray.filter { $0 != 0 }
                 cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
                 
-                print("Old Array: \(viewModel.priceArray)")
-                print("New Array: \(newArray)")
+//                print("Old Array: \(viewModel.priceArray)")
+//                print("New Array: \(newArray)")
                 
                 
             } else {
@@ -352,123 +352,6 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //        if indexPath.row < filterProductName.count {
-        //
-        //            cell.productLabelText.text = "\(filterProductName[indexPath.row])"
-        //        } else {
-        //            cell.productLabelText.text = "--"
-        //
-        //        }
-        //
-        //        if indexPath.row < viewModel.priceArray.count {
-        //
-        //            let newArray = viewModel.priceArray.filter { $0 != 0 }
-        //            cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
-        //
-        //            print("Old Array: \(viewModel.priceArray)")
-        //            print("New Array: \(newArray)")
-        //
-        //
-        //        } else {
-        //            cell.priceLabelText.text = "-----"
-        //        }
-        //
-        //        if indexPath.row < viewModel.dateArray.count {
-        //            cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
-        //        } else {
-        //            cell.dateLabelText.text = "-"
-        //        }
-        //
-        //        if indexPath.row < viewModel.categoryNameArray.count {
-        //            let selectedCategory = viewModel.categoryNameArray[indexPath.row]
-        //
-        //            switch selectedCategory {
-        //            case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
-        //            case "Food": cell.categoryImageView.image = UIImage(named: "food")
-        //            case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
-        //            case "Health": cell.categoryImageView.image = UIImage(named: "health")
-        //            case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
-        //            case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
-        //            case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
-        //
-        //
-        //            default:
-        //                cell.categoryImageView.image = UIImage(named: "other")
-        //            }
-        //        } else {
-        //            cell.categoryImageView.image = UIImage(named: "other")
-        //        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //        if indexPath.row < filterProductName.count {
-        //
-        //            cell.productLabelText.text = "\(filterProductName[indexPath.row])"
-        //        } else {
-        //            cell.productLabelText.text = "--"
-        //            //            cell.priceLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
-        //        }
-        //
-        //        if indexPath.row < viewModel.priceArray.count {
-        //            //            cell.priceLabelText.text = "\(viewModel.priceArray[indexPath.row])"
-        //            let newArray = viewModel.priceArray.filter { $0 != 0 }
-        //            cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
-        //
-        //            print("Old Array: \(viewModel.priceArray)")
-        //            print("New Array: \(newArray)")
-        //
-        //            //                        let price = viewModel.priceArray[indexPath.row]
-        //            //                        cell.priceLabelText.text = "\(price)$"
-        //
-        //        } else {
-        //            cell.priceLabelText.text = "-----"
-        //        }
-        //        //cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
-        //        //print("\(viewModel.categoryNameArray[indexPath.row])")
-        //        if indexPath.row < viewModel.dateArray.count {
-        //            cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
-        //        } else {
-        //            cell.dateLabelText.text = "-"
-        //        }
-        //
-        //        if indexPath.row < viewModel.categoryNameArray.count {
-        //            let selectedCategory = viewModel.categoryNameArray[indexPath.row]
-        //
-        //            switch selectedCategory {
-        //            case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
-        //            case "Food": cell.categoryImageView.image = UIImage(named: "food")
-        //            case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
-        //            case "Health": cell.categoryImageView.image = UIImage(named: "health")
-        //            case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
-        //            case "Transportion": cell.categoryImageView.image = UIImage(named: "transportion")
-        //            case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
-        //
-        //
-        //            default:
-        //                cell.categoryImageView.image = UIImage(named: "other")
-        //            }
-        //        } else {
-        //            cell.categoryImageView.image = UIImage(named: "other")
-        //        }
         
         return cell
     }

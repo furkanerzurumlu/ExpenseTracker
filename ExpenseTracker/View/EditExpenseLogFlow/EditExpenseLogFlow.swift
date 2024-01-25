@@ -33,6 +33,10 @@ class EditExpenseLogFlow: UIViewController {
         //        let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context)
         
         
+        productNameTextField.delegate = self
+        priceTextField.delegate = self
+        categoryTextField.delegate = self
+        
         productNameTextField.layer.cornerRadius = 10
         productNameTextField.layer.borderWidth = 1
         productNameTextField.layer.borderColor = UIColor.systemBlue.cgColor
@@ -117,8 +121,6 @@ class EditExpenseLogFlow: UIViewController {
         priceTextField.borderStyle = .none
         priceTextField.placeholder = " 19.99"
         
-        //        priceTextField.delegate = self
-        //        priceTextField.keyboardType =vi .numberPad
     }
     
     // MARK: Select Category Action
@@ -245,17 +247,30 @@ extension EditExpenseLogFlow: UIPickerViewDelegate, UIPickerViewDataSource {
         //        categoryTextField.resignFirstResponder()
         
         let selectedCategory = categoryOptions[row]
-        print("Selected Category = \(selectedCategory)")
+        //print("Selected Category = \(selectedCategory)")
         
         
     }
 }
 
-// MARK: TextField Extension
-//extension EditExpenseLogFlow: UITextFieldDelegate {
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let allowedCharecters = CharacterSet(charactersIn: "0123456789")
-//        let characterSet = CharacterSet(charactersIn: string)
-//        return allowedCharecters.isSuperset(of: characterSet)
-//    }
-//}
+extension EditExpenseLogFlow: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.inputAssistantItem.leadingBarButtonGroups = []
+        textField.inputAssistantItem.trailingBarButtonGroups = []
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.selectAll(nil)
+    }
+}
