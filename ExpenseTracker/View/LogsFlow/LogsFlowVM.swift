@@ -64,11 +64,8 @@ class LogsFlowVM {
         
         do {
             let results = try context.fetch(fetchRequest)
-//            var idArray = [UUID]()
-//            var dateArray = [String]()
-//            var productNameArray = [String]()
-//            var priceArray = [Int]()
-//            var categoryNameArray = [String]()
+
+            
             var idArray = [UUID]()
             var dateArray = [String]()
             var priceArray = [Int]()
@@ -94,14 +91,13 @@ class LogsFlowVM {
                 }
                 
             }
-            
+            priceArray = priceArray.filter { $0 != 0 }
             self.idArray = idArray
             self.dateArray = dateArray
             self.productNameArray = productNameArray
             self.priceArray = priceArray
             self.categoryNameArray = categoryNameArray
-            
-//            delegate?.refreshTableView() // Delegasyon ile tabloyu güncelliyoruz
+
         } catch {
             print("Error fetching data: \(error)")
         }

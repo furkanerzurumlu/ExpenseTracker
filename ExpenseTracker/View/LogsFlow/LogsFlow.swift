@@ -114,45 +114,8 @@ class LogsFlow: UIViewController {
     
     // MARK: Filter Product Items
     
-    func filterItemsByCategory(_ selectedCategoryTitle: String){
-        let filteredArray = self.viewModel.priceArray.filter { $0 != 0 }
-        
-        if selectedCategoryTitle == "All   " {
-                filterProductName = viewModel.productNameArray
-                // Tüm ürünlerin fiyatlarını alın
-            viewModel.priceArray = filteredArray
-            } else {
-                let matchingIndices = viewModel.categoryNameArray.indices.filter { viewModel.categoryNameArray[$0] == selectedCategoryTitle }
-                filterProductName = matchingIndices.map { viewModel.productNameArray[$0] }
-                // Seçilen kategoriye göre fiyatları güncelleyin
-                viewModel.priceArray = filterPricesByCategory(selectedCategory: selectedCategoryTitle)
-            }
-
-            itemTableView.reloadData()
-        
-    }
     
-    func filterPricesByCategory(selectedCategory: String) -> [Int]{
-        
-        let filteredArray = self.viewModel.priceArray.filter { $0 != 0 }
-        
-        var filteredPrices: [Int] = []
-        var filteredProducts: [String] = [] // Filtrelenmiş ürünlerin dizisi
-        
-        for productName in filterProductName {
-            if let index = viewModel.productNameArray.firstIndex(of: productName), index < filteredArray.count {
-                if viewModel.categoryNameArray[index] == selectedCategory {
-                    filteredPrices.append(filteredArray[index])
-                    filteredProducts.append(productName) // Filtrelenmiş ürünleri ekleyin
-                }
-            }
-        }
-        
-        // Filtrelenmiş ürünler dizisini güncelleyin
-        filterProductName = filteredProducts
-        
-        return filteredPrices
-    }
+    
     
     // MARK: Set ColletionView
     private func setTabCollectionView(){
@@ -204,9 +167,7 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         
         //print("Seçilen Kategori: \(selectedCategoryTitle)")
         
-        filterItemsByCategory(selectedCategoryTitle)
         
-        let filterPrices = filterPricesByCategory(selectedCategory: selectedCategoryTitle)
         
         if selectedCategoryTitle == "All" {
             
@@ -310,25 +271,13 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         
         
         cell.productLabelText.text = filterProductName[indexPath.row]
-        if let index = viewModel.productNameArray.firstIndex(of: filterProductName[indexPath.row]) {
+     
             
-                let filteredArray = self.viewModel.priceArray.filter { $0 != 0 }
-            let price = filteredArray[index]
-                cell.priceLabelText.text = "$\(price).00"
-            } else {
-                cell.priceLabelText.text = "---"
-            }
+
+        cell.priceLabelText.text = "$\(viewModel.priceArray[indexPath.row]).00"
+            
         
-//        let filteredPrices = filterPricesByCategory(selectedCategory: viewModel.filterDataValue)
-//            
-//            // Doğru satırdaki fiyatı alın
-//        print(filteredPrices.count)
-//        
-//            if indexPath.row < filteredPrices.count {
-//                cell.priceLabelText.text = "$\(filteredPrices[indexPath.row]).00"
-//            } else {
-//                cell.priceLabelText.text = "-----"
-//            }
+
         
         cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
             
