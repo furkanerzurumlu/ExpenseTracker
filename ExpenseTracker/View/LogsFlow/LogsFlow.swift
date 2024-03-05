@@ -33,11 +33,13 @@ class LogsFlow: UIViewController {
     @IBOutlet weak var itemTableView: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!
-        
+    
     var filterProductName: [String] = []
     var filterCategory:[String] = []
     
     var viewModel = LogsFlowVM()
+    
+    var matchCategory: String?
     
     var selectedCell: CategoryCollectionViewCell?
     var selectedIndex: IndexPath?
@@ -112,7 +114,24 @@ class LogsFlow: UIViewController {
         //        }
     }
     
-    // MARK: Filter Product Items
+    // MARK: Match Product Image
+    
+    func getValidCategory(category: String, cell: ItemCell){
+        
+        switch category {
+            
+        case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
+        case "Food": cell.categoryImageView.image = UIImage(named: "food")
+        case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
+        case "Health": cell.categoryImageView.image = UIImage(named: "health")
+        case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
+        case "Transportation": cell.categoryImageView.image = UIImage(named: "transportation")
+        case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
+            
+        default:
+            cell.categoryImageView.image = UIImage(named: "other")
+        }
+    }
     
     
     
@@ -162,12 +181,11 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         selectedIndex = indexPath
         collectionView.reloadData()
         
-        let selectedCategory = categories[indexPath.item]
+        var selectedCategory = categories[indexPath.item]
         let selectedCategoryTitle = selectedCategory.title.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        //print("Seçilen Kategori: \(selectedCategoryTitle)")
-        
-        
+        matchCategory = selectedCategoryTitle
+
         
         if selectedCategoryTitle == "All" {
             
@@ -254,6 +272,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBar.text?.isEmpty == true && viewModel.filteredItemsArray.isEmpty == true{
+            
             return viewModel.productNameArray.count
         } else if viewModel.filteredItemsArray.isEmpty == false{
             print("Count: \(viewModel.filteredItemsArray.count)")
@@ -268,139 +287,41 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
-        
-        
-        cell.productLabelText.text = filterProductName[indexPath.row]
-     
-            
 
-        cell.priceLabelText.text = "$\(viewModel.priceArray[indexPath.row]).00"
-            
+        print("FilterItem:\(viewModel.filteredItemsArray)") // FilterItem:["Food", "Food", "Food"] şeklinde data döndürür.
         
-
-        
-        cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
+        if viewModel.filteredItemsArray.isEmpty{ //Kategori seçilmediğinde ya da "All durumunda
+            cell.productLabelText.text = filterProductName[indexPath.row]
+            cell.priceLabelText.text = "$\(viewModel.priceArray[indexPath.row]).00"
+            cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
             
-       
-        //        var matchingIndex: [Int] = []
-//
-//        print("TEST :\(filterProductName)")
-//        print("TEST INDEX :\(matchingIndex)")
-//        //        viewModel.filterDataValue == "All   " || viewModel.filterDataValue == ""
-//        if (searchBool == false){
-//            
-//            if indexPath.row < filterProductName.count {
-//                
-//                cell.productLabelText.text = "\(filterProductName[indexPath.row])"
-//                
-//            } else {
-//                
-//                cell.productLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
-//            }
-//            
-//            
-//            let newArray = viewModel.priceArray.filter { $0 != 0 }
-//            cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
-//            
-//            cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
-//            
-//            let selectedCategory = viewModel.categoryNameArray[indexPath.row]
-//            
-//            switch selectedCategory {
-//            case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
-//            case "Food": cell.categoryImageView.image = UIImage(named: "food")
-//            case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
-//            case "Health": cell.categoryImageView.image = UIImage(named: "health")
-//            case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
-//            case "Transportation": cell.categoryImageView.image = UIImage(named: "transportation")
-//            case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
-//            default:
-//                cell.categoryImageView.image = UIImage(named: "other")
-//            }
-//            
-//            //            if indexPath.row < filterProductName.count {
-//            //
-//            //                cell.productLabelText.text = "\(filterProductName[indexPath.row])"
-//            //
-//            //            } else {
-//            //
-//            //                cell.productLabelText.text = "\(viewModel.productNameArray[indexPath.row])"
-//            //            }
-//            //
-//            //            if indexPath.row < viewModel.priceArray.count {
-//            //
-//            //                let newArray = viewModel.priceArray.filter { $0 != 0 }
-//            //                cell.priceLabelText.text = "$\(newArray[indexPath.row]).00"
-//            //
-//            //            } else {
-//            //                cell.priceLabelText.text = "-----"
-//            //            }
-//            //
-//            //            if indexPath.row < viewModel.dateArray.count {
-//            //                cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
-//            //            } else {
-//            //                cell.dateLabelText.text = "-"
-//            //            }
-//            //
-//            //            if indexPath.row < viewModel.categoryNameArray.count {
-//            //                let selectedCategory = viewModel.categoryNameArray[indexPath.row]
-//            //
-//            //                switch selectedCategory {
-//            //                case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
-//            //                case "Food": cell.categoryImageView.image = UIImage(named: "food")
-//            //                case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
-//            //                case "Health": cell.categoryImageView.image = UIImage(named: "health")
-//            //                case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
-//            //                case "Transportation": cell.categoryImageView.image = UIImage(named: "transportation")
-//            //                case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
-//            //
-//            //
-//            //                default:
-//            //                    cell.categoryImageView.image = UIImage(named: "other")
-//            //                }
-//            //            } else {
-//            //                cell.categoryImageView.image = UIImage(named: "other")
-//            //            }
-//            
-//        } else{
-//            
             
-//            print("yyyyyyyyy ")
-//            for (index,item) in viewModel.categoryNameArray.enumerated() {
-//                if item == viewModel.filterDataValue {
-//                    matchingIndex.append(index)
-//                }
-//            }
-//            //            !matchingIndex.isEmpty
-//            if searchBool == true {
-//                print(viewModel.categoryNameArray)
-//                print("Eşleşen indisler: \(matchingIndex)")
-//                for index in matchingIndex {
-//                    print("indisler \(index)")
-//                }
-//                
-//                cell.productLabelText.text = "\(filterProductName[matchingIndex[indexPath.row]])"
-//                let newArray = viewModel.priceArray.filter { $0 != 0 }
-//                cell.priceLabelText.text = "$\(newArray[matchingIndex[indexPath.row]]).00"
-//                
-//                switch viewModel.filterDataValue{
-//                    
-//                case "Donation": cell.categoryImageView.image = UIImage(named: "donation")
-//                case "Food": cell.categoryImageView.image = UIImage(named: "food")
-//                case "Entertainment": cell.categoryImageView.image = UIImage(named: "entertainment")
-//                case "Health": cell.categoryImageView.image = UIImage(named: "health")
-//                case "Shopping": cell.categoryImageView.image = UIImage(named: "shopping")
-//                case "Transportation": cell.categoryImageView.image = UIImage(named: "transportation")
-//                case "Utilities": cell.categoryImageView.image = UIImage(named: "utilities")
-//                    
-//                    
-//                default:
-//                    cell.categoryImageView.image = UIImage(named: "other")
-//                }
-//            }
+            let selectedCategory = viewModel.categoryNameArray[indexPath.row]
+            
+            getValidCategory(category: selectedCategory, cell: cell)
+            
+        } else {
+            print("dolu")
+            
+            var matchingIndex: [Int] = []
+            for (index,item) in viewModel.categoryNameArray.enumerated() {
+                if item == viewModel.filterDataValue {
+                    matchingIndex.append(index)
+                }
+            }
+            print("eşleşen index: \(matchingIndex)")
+            
+            cell.productLabelText.text = filterProductName[matchingIndex[indexPath.row]]
+            print(filterProductName[matchingIndex[indexPath.row]])
+            cell.priceLabelText.text = "$\(viewModel.priceArray[matchingIndex[indexPath.row]]).00"
+            
+            getValidCategory(category: viewModel.filteredItemsArray[indexPath.row], cell: cell)
+        }
+    
         
         
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -422,7 +343,7 @@ extension LogsFlow: UISearchBarDelegate {
             
             filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
             refreshTableView()
-           
+            
             
         }
         //refreshTableView()
