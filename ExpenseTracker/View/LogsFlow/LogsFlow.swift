@@ -31,20 +31,21 @@ class LogsFlow: UIViewController {
     @IBOutlet weak var tabCollectionView: UICollectionView!
     @IBOutlet weak var segmentView: UIStackView!
     @IBOutlet weak var itemTableView: UITableView!
-    
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    var viewModel = LogsFlowVM()
     
     var filterProductName: [String] = []
     var filterCategory:[String] = []
-    
-    var viewModel = LogsFlowVM()
     
     var matchCategory: String?
     
     var selectedCell: CategoryCollectionViewCell?
     var selectedIndex: IndexPath?
     
+    var matchingIndex: [Int] = []
     
+    var toDoSearchText: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,37 +87,16 @@ class LogsFlow: UIViewController {
     }
     
     
-    
     // MARK: CoreData Fetch Proccess
     @objc func getData(){
         
         viewModel.getAllData()
-        
-        //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        //        let context = appDelegate.persistentContainer.viewContext
-        //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
-        //        fetchRequest.returnsObjectsAsFaults = false
-        //
-        //        do{
-        //            let results = try context.fetch(fetchRequest)
-        //            for resut in results as! [NSManagedObject]{
-        //
-        //                if let product = resut.value(forKey: "product") as? String {
-        //                    self.productNameArray.append(product)
-        //                }
-        //                if let id = resut.value(forKey: "id") as? UUID {
-        //                    self.idArray.append(id)
-        //                }
-        //                self.itemTableView.reloadData()
-        //            }
-        //        } catch {
-        //
-        //        }
+
     }
     
     // MARK: Match Product Image
     
-    func getValidCategory(category: String, cell: ItemCell){
+    func getValidCategoryImage(category: String, cell: ItemCell){
         
         switch category {
             
@@ -132,9 +112,6 @@ class LogsFlow: UIViewController {
             cell.categoryImageView.image = UIImage(named: "other")
         }
     }
-    
-    
-    
     
     // MARK: Set ColletionView
     private func setTabCollectionView(){
@@ -181,7 +158,7 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         selectedIndex = indexPath
         collectionView.reloadData()
         
-        var selectedCategory = categories[indexPath.item]
+        let selectedCategory = categories[indexPath.item]
         let selectedCategoryTitle = selectedCategory.title.trimmingCharacters(in: .whitespacesAndNewlines)
         
         matchCategory = selectedCategoryTitle
@@ -217,7 +194,6 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         cell.layoutSubviews()
         
         if let selectedIndexPath = selectedIndex {
-            // Eğer selectedIndex değeri nil değilse, yani bir hücre seçilmişse
             
             if selectedIndexPath == indexPath {
                 cell.backgroundColor = UIColor(hex: 0xEADBC8)
@@ -227,7 +203,6 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
                 cell.titleLabel.textColor = UIColor.gray
             }
         } else {
-            // selectedIndex değeri nil ise, yani hiçbir hücre seçilmemişse
             
             if indexPath.item == 0 {
                 cell.backgroundColor = UIColor(hex: 0xEADBC8)
@@ -246,8 +221,6 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         let category = categories[indexPath.item]
         let titleWidth = calculateLabelWidth(text: category.title) + 20
         return CGSize(width: titleWidth + 30, height: 40)
-        
-        //return CGSize(width: 100, height: 40)
         
     }
     
@@ -290,7 +263,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
 
         print("FilterItem:\(viewModel.filteredItemsArray)") // FilterItem:["Food", "Food", "Food"] şeklinde data döndürür.
         
-        if viewModel.filteredItemsArray.isEmpty{ //Kategori seçilmediğinde ya da "All durumunda
+        if viewModel.filteredItemsArray.isEmpty  || filterProductName.isEmpty{ //Kategori seçilmediğinde ya da "All durumunda
             cell.productLabelText.text = filterProductName[indexPath.row]
             cell.priceLabelText.text = "$\(viewModel.priceArray[indexPath.row]).00"
             cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
@@ -298,12 +271,12 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
             
             let selectedCategory = viewModel.categoryNameArray[indexPath.row]
             
-            getValidCategory(category: selectedCategory, cell: cell)
+            getValidCategoryImage(category: selectedCategory, cell: cell)
             
         } else {
             print("dolu")
             
-            var matchingIndex: [Int] = []
+            
             for (index,item) in viewModel.categoryNameArray.enumerated() {
                 if item == viewModel.filterDataValue {
                     matchingIndex.append(index)
@@ -315,7 +288,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
             print(filterProductName[matchingIndex[indexPath.row]])
             cell.priceLabelText.text = "$\(viewModel.priceArray[matchingIndex[indexPath.row]]).00"
             
-            getValidCategory(category: viewModel.filteredItemsArray[indexPath.row], cell: cell)
+            getValidCategoryImage(category: viewModel.filteredItemsArray[indexPath.row], cell: cell)
         }
     
         
@@ -329,7 +302,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
+// MARK: SerachBar Delegate
 
 extension LogsFlow: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -338,26 +311,32 @@ extension LogsFlow: UISearchBarDelegate {
             filterProductName = viewModel.productNameArray
             refreshTableView()
             
+            toDoSearchText = false
             
         } else {
             
-            filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
+            filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased())
+                
+            }
+            for (index,item) in viewModel.productNameArray.enumerated() {
+                if item == viewModel.filterDataValue {
+                    matchingIndex.append(index)
+                }
+            }
+            print("Match Index:\(matchingIndex)")
+            print("filtrelenen text: \(filterProductName)")
+            
+            toDoSearchText = true
+            
             refreshTableView()
             
             
         }
-        //refreshTableView()
         
-        //                if searchText.isEmpty == true {
-        //                    filterProductName = viewModel.productNameArray
-        //
-        //                } else {
-        //                    filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
-        //                }
-        //                refreshTableView()
     }
 }
 
+// MARK: LogsFlowVMDelegate
 extension LogsFlow: LogsFlowVMDelegate {
     func refreshTableView() {
         DispatchQueue.main.async {
@@ -374,12 +353,4 @@ extension LogsFlow: LogsFlowVMDelegate {
 }
 
 
-//extension LogsFlow: LogsFlowVMDelegate {
-//    func refreshTableView() {
-//        DispatchQueue.main.async {
-//            self.itemTableView.reloadData()
-//        }
-//    }
-//
-//
-//}
+
