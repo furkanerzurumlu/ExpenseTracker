@@ -28,6 +28,8 @@ class LogsFlowVM {
     var filteredItemsArray = [String]()
     
     var filterDataValue: String = "All   "
+    var filterSearchValue: String = ""
+    var searchMatchIndex: [Int] = []
     
     func getAllData(){
         //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}

@@ -91,7 +91,7 @@ class LogsFlow: UIViewController {
     @objc func getData(){
         
         viewModel.getAllData()
-
+        
     }
     
     // MARK: Match Product Image
@@ -162,7 +162,7 @@ extension LogsFlow: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         let selectedCategoryTitle = selectedCategory.title.trimmingCharacters(in: .whitespacesAndNewlines)
         
         matchCategory = selectedCategoryTitle
-
+        
         
         if selectedCategoryTitle == "All" {
             
@@ -260,37 +260,47 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
-
+        
         print("FilterItem:\(viewModel.filteredItemsArray)") // FilterItem:["Food", "Food", "Food"] şeklinde data döndürür.
         
-        if viewModel.filteredItemsArray.isEmpty  || filterProductName.isEmpty{ //Kategori seçilmediğinde ya da "All durumunda
-            cell.productLabelText.text = filterProductName[indexPath.row]
-            cell.priceLabelText.text = "$\(viewModel.priceArray[indexPath.row]).00"
-            cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
-            
-            
-            let selectedCategory = viewModel.categoryNameArray[indexPath.row]
-            
-            getValidCategoryImage(category: selectedCategory, cell: cell)
-            
-        } else {
-            print("dolu")
-            
-            
-            for (index,item) in viewModel.categoryNameArray.enumerated() {
-                if item == viewModel.filterDataValue {
-                    matchingIndex.append(index)
+        if toDoSearchText == false{
+            if viewModel.filteredItemsArray.isEmpty  || filterProductName.isEmpty{ //Kategori seçilmediğinde ya da "All durumunda
+                cell.productLabelText.text = filterProductName[indexPath.row]
+                cell.priceLabelText.text = "$\(viewModel.priceArray[indexPath.row]).00"
+                cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
+                
+                
+                let selectedCategory = viewModel.categoryNameArray[indexPath.row]
+                
+                getValidCategoryImage(category: selectedCategory, cell: cell)
+                
+            } else {
+                print("dolu")
+                
+                
+                for (index,item) in viewModel.categoryNameArray.enumerated() {
+                    if item == viewModel.filterDataValue {
+                        matchingIndex.append(index)
+                    }
                 }
+                print("eşleşen index: \(matchingIndex)")
+                
+                cell.productLabelText.text = filterProductName[matchingIndex[indexPath.row]]
+                print(filterProductName[matchingIndex[indexPath.row]])
+                cell.priceLabelText.text = "$\(viewModel.priceArray[matchingIndex[indexPath.row]]).00"
+                
+                getValidCategoryImage(category: viewModel.filteredItemsArray[indexPath.row], cell: cell)
             }
-            print("eşleşen index: \(matchingIndex)")
+        } else {
+            print("Search Deneme Match Index: \(viewModel.searchMatchIndex) ")
             
-            cell.productLabelText.text = filterProductName[matchingIndex[indexPath.row]]
-            print(filterProductName[matchingIndex[indexPath.row]])
-            cell.priceLabelText.text = "$\(viewModel.priceArray[matchingIndex[indexPath.row]]).00"
             
-            getValidCategoryImage(category: viewModel.filteredItemsArray[indexPath.row], cell: cell)
+            cell.productLabelText.text = viewModel.productNameArray[viewModel.searchMatchIndex[indexPath.row]]
+            cell.priceLabelText.text = "$\(viewModel.priceArray[viewModel.searchMatchIndex[indexPath.row]]).00"
+            getValidCategoryImage(category: viewModel.categoryNameArray[viewModel.searchMatchIndex[indexPath.row]], cell: cell)
         }
-    
+        
+        
         
         
         return cell
@@ -315,22 +325,20 @@ extension LogsFlow: UISearchBarDelegate {
             
         } else {
             
-            filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased())
-                
-            }
-            for (index,item) in viewModel.productNameArray.enumerated() {
-                if item == viewModel.filterDataValue {
+            filterProductName = viewModel.productNameArray.filter {$0.lowercased().contains(searchText.lowercased())}
+            for (index,name) in viewModel.productNameArray.enumerated() {
+                if filterProductName.contains(name){
                     matchingIndex.append(index)
                 }
             }
-            print("Match Index:\(matchingIndex)")
-            print("filtrelenen text: \(filterProductName)")
-            
+            viewModel.searchMatchIndex = matchingIndex
             toDoSearchText = true
-            
             refreshTableView()
             
-            
+//            print("filterProductName\(filterProductName)")
+//            print("deneme123\(viewModel.productNameArray.enumerated())")
+//            print("Match Index2:\(matchingIndex)")
+//            print("filtrelenen text: \(filterProductName)")
         }
         
     }
