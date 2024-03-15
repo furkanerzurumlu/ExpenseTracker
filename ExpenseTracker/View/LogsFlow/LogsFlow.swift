@@ -262,8 +262,8 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
         
         print("FilterItem:\(viewModel.filteredItemsArray)") // FilterItem:["Food", "Food", "Food"] şeklinde data döndürür.
-        
-        if toDoSearchText == false{
+        matchingIndex = []
+        if toDoSearchText == false{ // Search Bar Aktivitasyon
             if viewModel.filteredItemsArray.isEmpty  || filterProductName.isEmpty{ //Kategori seçilmediğinde ya da "All durumunda
                 cell.productLabelText.text = filterProductName[indexPath.row]
                 cell.priceLabelText.text = "$\(viewModel.priceArray[indexPath.row]).00"
@@ -284,12 +284,18 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 print("eşleşen index: \(matchingIndex)")
+                print("ham array: \(filterProductName)")
+                print("eşleşen product name: \(filterProductName[matchingIndex[indexPath.row]])")
+                print("eşleşen price value: \(viewModel.priceArray[matchingIndex[indexPath.row]]).00")
+                
+                
                 
                 cell.productLabelText.text = filterProductName[matchingIndex[indexPath.row]]
-                print(filterProductName[matchingIndex[indexPath.row]])
+                //print(filterProductName[matchingIndex[indexPath.row]])
                 cell.priceLabelText.text = "$\(viewModel.priceArray[matchingIndex[indexPath.row]]).00"
-                
+                cell.dateLabelText.text = "\(viewModel.dateArray[matchingIndex[indexPath.row]])"
                 getValidCategoryImage(category: viewModel.filteredItemsArray[indexPath.row], cell: cell)
+                
             }
         } else {
             print("Search Deneme Match Index: \(viewModel.searchMatchIndex) ")
@@ -335,10 +341,10 @@ extension LogsFlow: UISearchBarDelegate {
             toDoSearchText = true
             refreshTableView()
             
-//            print("filterProductName\(filterProductName)")
-//            print("deneme123\(viewModel.productNameArray.enumerated())")
-//            print("Match Index2:\(matchingIndex)")
-//            print("filtrelenen text: \(filterProductName)")
+            print("filterProductName\(filterProductName)")
+            print("deneme123\(viewModel.productNameArray.enumerated())")
+            print("Match Index2:\(matchingIndex)")
+            print("filtrelenen text: \(filterProductName)")
         }
         
     }
