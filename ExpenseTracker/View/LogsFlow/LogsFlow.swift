@@ -46,6 +46,9 @@ class LogsFlow: UIViewController {
     var matchingIndex: [Int] = []
     
     var toDoSearchText: Bool = false
+    
+    var isSearchTextValid: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,8 +75,14 @@ class LogsFlow: UIViewController {
         itemTableView.layer.borderWidth = 0.3
         itemTableView.layer.borderColor = UIColor.gray.cgColor
         
+        
+        
+        
+        
+        
         print("Kategori Array :\(viewModel.categoryNameArray)")
         print(viewModel.priceArray)
+        
         
         
     }
@@ -93,6 +102,36 @@ class LogsFlow: UIViewController {
         viewModel.getAllData()
         
     }
+    
+    // MARK: Invalid Search Text
+    
+    func InvalidSeachTextImage(visible : Bool){
+        
+        if visible {
+                let errorImageView = UIImageView(image: UIImage(named: "cancel"))
+                errorImageView.contentMode = .scaleAspectFit
+                errorImageView.translatesAutoresizingMaskIntoConstraints = false
+                
+                // Set the size of the error image view
+                errorImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+                errorImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+                
+                // Add constraints to center the error image view
+                itemTableView.addSubview(errorImageView)
+                NSLayoutConstraint.activate([
+                    errorImageView.centerXAnchor.constraint(equalTo: itemTableView.centerXAnchor),
+                    errorImageView.centerYAnchor.constraint(equalTo: itemTableView.centerYAnchor)
+                ])
+            } else {
+                // If not visible, remove any existing error image view
+                for subview in itemTableView.subviews {
+                    if let imageView = subview as? UIImageView {
+                        imageView.removeFromSuperview()
+                    }
+                }
+            }
+    }
+    
     
     // MARK: Match Product Image
     
@@ -250,8 +289,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         } else if viewModel.filteredItemsArray.isEmpty == false{
             print("Count: \(viewModel.filteredItemsArray.count)")
             return viewModel.filteredItemsArray.count
-        }
-        else {
+        }else {
             return filterProductName.count
         }
         
@@ -262,7 +300,9 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         let cell = itemTableView.dequeueReusableCell(withIdentifier: ItemCell.identifer,for: indexPath) as! ItemCell
         
         print("FilterItem:\(viewModel.filteredItemsArray)") // FilterItem:["Food", "Food", "Food"] şeklinde data döndürür.
+        
         matchingIndex = []
+    
         if toDoSearchText == false{ // Search Bar Aktivitasyon
             if viewModel.filteredItemsArray.isEmpty  || filterProductName.isEmpty{ //Kategori seçilmediğinde ya da "All durumunda
                 cell.productLabelText.text = filterProductName[indexPath.row]
@@ -296,6 +336,7 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
                 cell.dateLabelText.text = "\(viewModel.dateArray[matchingIndex[indexPath.row]])"
                 getValidCategoryImage(category: viewModel.filteredItemsArray[indexPath.row], cell: cell)
                 
+                
             }
         } else {
             print("Search Deneme Match Index: \(viewModel.searchMatchIndex) ")
@@ -307,8 +348,12 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
         }
         
         
-        
-        
+        if isSearchTextValid {
+                InvalidSeachTextImage(visible: false)
+            } else {
+                InvalidSeachTextImage(visible: true)
+            }
+    
         return cell
         
     }
@@ -323,23 +368,30 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
 extension LogsFlow: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if searchText.isEmpty {
-            filterProductName = viewModel.productNameArray
-            refreshTableView()
-            
-            toDoSearchText = false
-            
-        } else {
             
             filterProductName = viewModel.productNameArray.filter {$0.lowercased().contains(searchText.lowercased())}
+//            
             for (index,name) in viewModel.productNameArray.enumerated() {
                 if filterProductName.contains(name){
                     matchingIndex.append(index)
                 }
             }
             viewModel.searchMatchIndex = matchingIndex
-            toDoSearchText = true
+//            toDoSearchText = true
+//            refreshTableView()
+            
+        if searchText.isEmpty {
+                filterProductName = viewModel.productNameArray
+                isSearchTextValid = true
+                InvalidSeachTextImage(visible: false)
+            } else {
+                filterProductName = viewModel.productNameArray.filter { $0.lowercased().contains(searchText.lowercased()) }
+                isSearchTextValid = !filterProductName.isEmpty
+                InvalidSeachTextImage(visible: !isSearchTextValid)
+            }
+            toDoSearchText = !searchText.isEmpty
             refreshTableView()
+            
             
             print("filterProductName\(filterProductName)")
             print("deneme123\(viewModel.productNameArray.enumerated())")
@@ -348,7 +400,7 @@ extension LogsFlow: UISearchBarDelegate {
         }
         
     }
-}
+
 
 // MARK: LogsFlowVMDelegate
 extension LogsFlow: LogsFlowVMDelegate {
