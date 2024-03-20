@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         setTabBar()
         setupPieChart()
     
+        pieView.delegate = self
         
         setCategoryStackView(stackView: donationStackView, colorHex: colors[0])
         setCategoryStackView(stackView: entertainmentStackView, colorHex: colors[1])
@@ -119,6 +120,9 @@ class ViewController: UIViewController {
     }
     
     func setupPieChart(){
+        pieView.drawEntryLabelsEnabled = true
+        
+        
         var dataEntries: [ChartDataEntry] = []
         
         let donationTotal = calculateCategoryTotal(category: "Donation", prices: viewModel.priceArray)
@@ -159,10 +163,7 @@ class ViewController: UIViewController {
         let total = values.reduce(0, +)
         
         self.totalPriceLabel.text = "$\(total)"
-//        for (index, value) in values.enumerated() {
-//            let entry = PieChartDataEntry(value: value, label: "Segment \(index)")
-//            dataEntries.append(entry)
-//        }
+
         for (index, value) in values.enumerated() {
             let percentage = (value / total) * 100.0
             let entry = PieChartDataEntry(value: percentage, label: "\(index)")
@@ -188,11 +189,20 @@ class ViewController: UIViewController {
         
         data.setValueFormatter(DefaultValueFormatter(formatter: numberFormatter))
         
-        pieView.legend.enabled = true
-        pieView.drawEntryLabelsEnabled = false
-        pieView.drawHoleEnabled = false
+       
         pieView.legend.enabled = false
+        pieView.drawEntryLabelsEnabled = false
+        //pieView.drawHoleEnabled = false
+        //pieView.legend.enabled = false
+       
+        pieView.drawHoleEnabled = true
+        pieView.holeRadiusPercent = 0.4 // Deliğin yarıçapı, tam yüzde cinsinden (%50)
+        pieView.holeColor = UIColor.white // Deliğin rengi
         
+        let totalValue = calculateCategoryTotal(category: "Tüm Kategoriler", prices: viewModel.priceArray)
+        let centerText = "Toplam: \(totalValue)"
+        pieView.centerText = centerText
+        pieView.drawCenterTextEnabled = true // Merkezdeki metni görünür hale getirir
     }
     
     func totalExpenditure(){
@@ -208,6 +218,18 @@ class ViewController: UIViewController {
     }
     
 }
+
+extension ViewController: ChartViewDelegate {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        // Seçilen dilimin değerini alın
+                let selectedValue = entry.y
+                // Bu değeri merkeze yazdırın
+                pieView.centerText = "\(selectedValue)"
+                pieView.drawCenterTextEnabled = true
+    }
+}
+
+
 
 extension NSUIColor {
     
