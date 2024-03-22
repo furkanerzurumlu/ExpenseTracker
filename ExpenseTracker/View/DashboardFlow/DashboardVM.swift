@@ -22,6 +22,7 @@ class DashboardVM {
     var productNameArray = [String]()
     var categoryNameArray = [String]()
     
+    var categoryTotalPrice = [Double]()
     func getAllData(){
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }

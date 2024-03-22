@@ -108,13 +108,13 @@ class LogsFlow: UIViewController {
     func InvalidSeachTextImage(visible : Bool){
         
         if visible {
-                let errorImageView = UIImageView(image: UIImage(named: "cancel"))
+                let errorImageView = UIImageView(image: UIImage(named: "not_found"))
                 errorImageView.contentMode = .scaleAspectFit
                 errorImageView.translatesAutoresizingMaskIntoConstraints = false
                 
                 // Set the size of the error image view
-                errorImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-                errorImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+                errorImageView.widthAnchor.constraint(equalToConstant: 128).isActive = true
+                errorImageView.heightAnchor.constraint(equalToConstant: 128).isActive = true
                 
                 // Add constraints to center the error image view
                 itemTableView.addSubview(errorImageView)
@@ -122,11 +122,32 @@ class LogsFlow: UIViewController {
                     errorImageView.centerXAnchor.constraint(equalTo: itemTableView.centerXAnchor),
                     errorImageView.centerYAnchor.constraint(equalTo: itemTableView.centerYAnchor)
                 ])
+            
+            let errorLabel = UILabel()
+            errorLabel.text = "Sorry! No results founds :("
+            errorLabel.textColor = .gray
+            errorLabel.textAlignment = .center
+            errorLabel.translatesAutoresizingMaskIntoConstraints = false
+
+            // Add the label to the itemTableView
+            itemTableView.addSubview(errorLabel)
+
+            // Add constraints to center the label horizontally with the error image view
+            NSLayoutConstraint.activate([
+                errorLabel.centerXAnchor.constraint(equalTo: errorImageView.centerXAnchor),
+                // Adjust the vertical spacing between the image view and the label as desired
+                errorLabel.topAnchor.constraint(equalTo: errorImageView.bottomAnchor, constant: 16)
+            ])
+            
             } else {
                 // If not visible, remove any existing error image view
                 for subview in itemTableView.subviews {
                     if let imageView = subview as? UIImageView {
                         imageView.removeFromSuperview()
+                        
+                    }
+                    if let errorLabel = subview as? UILabel {
+                        errorLabel.removeFromSuperview()
                     }
                 }
             }

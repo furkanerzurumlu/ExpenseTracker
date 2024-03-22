@@ -35,6 +35,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var totalPriceLabel: UILabel!
     
+    var selectedCategoryTotal: Double = 0.0
+    
     let colors: [UIColor] = [
         UIColor(hex: 0x007AFF),
         UIColor(hex: 0xFF9500),
@@ -160,6 +162,9 @@ class ViewController: UIViewController {
                                 utilitiesTotal,
                                 otherTotal]
         
+        viewModel.categoryTotalPrice = values
+        print(values)
+        print(viewModel.categoryTotalPrice)
         let total = values.reduce(0, +)
         
         self.totalPriceLabel.text = "$\(total)"
@@ -200,9 +205,9 @@ class ViewController: UIViewController {
         pieView.holeColor = UIColor.white // Deliğin rengi
         
         let totalValue = calculateCategoryTotal(category: "Tüm Kategoriler", prices: viewModel.priceArray)
-        let centerText = "Toplam: \(totalValue)"
-        pieView.centerText = centerText
-        pieView.drawCenterTextEnabled = true // Merkezdeki metni görünür hale getirir
+        //let centerText = "Toplam: \(totalValue)"
+       // pieView.centerText = centerText
+        //pieView.drawCenterTextEnabled = true // Merkezdeki metni görünür hale getirir
     }
     
     func totalExpenditure(){
@@ -220,12 +225,20 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: ChartViewDelegate {
+    
+    
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        // Seçilen dilimin değerini alın
-                let selectedValue = entry.y
-                // Bu değeri merkeze yazdırın
-                pieView.centerText = "\(selectedValue)"
-                pieView.drawCenterTextEnabled = true
+        if let dataSet = chartView.data?.dataSets[ highlight.dataSetIndex] {
+               let sliceIndex: Int = dataSet.entryIndex( entry: entry)
+            print( "Selected slice index: \( sliceIndex.description)")
+            print("$ \( viewModel.categoryTotalPrice[sliceIndex])")
+            let selectedCategoryValue = viewModel.categoryTotalPrice[sliceIndex]
+            
+            let centerText = "$\(selectedCategoryValue)"
+            pieView.centerText = centerText
+            pieView.drawCenterTextEnabled = true
+           }
+
     }
 }
 
