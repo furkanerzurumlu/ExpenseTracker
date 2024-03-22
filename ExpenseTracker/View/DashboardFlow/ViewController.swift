@@ -76,7 +76,7 @@ class ViewController: UIViewController {
         self.tabBarController!.tabBar.layer.borderColor = UIColor.gray.cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
         //totalExpenditure()
-        print("Total: \(viewModel.priceArray.count)")
+        //print("Total: \(viewModel.priceArray.count)")
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -151,7 +151,7 @@ class ViewController: UIViewController {
         let otherTotal = calculateCategoryTotal(category: "Other", prices: viewModel.priceArray)
         otherPriceLabel.text = otherTotal != 0 ? "$\(String(otherTotal))" : "$0"
         
-        print(donationTotal+entertainmentTotal+foodTotal+healthTotal+shoppingTotal+transportationTotal+utilitiesTotal+utilitiesTotal+otherTotal)
+        //print(donationTotal+entertainmentTotal+foodTotal+healthTotal+shoppingTotal+transportationTotal+utilitiesTotal+otherTotal)
         
         let values: [Double] = [donationTotal,
                                 entertainmentTotal,
@@ -169,6 +169,7 @@ class ViewController: UIViewController {
         
         self.totalPriceLabel.text = "$\(total)"
 
+        print("total: \(total)")
         for (index, value) in values.enumerated() {
             let percentage = (value / total) * 100.0
             let entry = PieChartDataEntry(value: percentage, label: "\(index)")
@@ -237,6 +238,7 @@ extension ViewController: ChartViewDelegate {
             let centerText = "$\(selectedCategoryValue)"
             pieView.centerText = centerText
             pieView.drawCenterTextEnabled = true
+            
            }
 
     }
