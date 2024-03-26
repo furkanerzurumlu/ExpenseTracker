@@ -35,8 +35,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var totalPriceLabel: UILabel!
     
+    private var stackViewArray: [UIStackView] = []
+    
     var selectedCategoryTotal: Double = 0.0
     
+    var previousSelectedIndex: Int?
     let colors: [UIColor] = [
         UIColor(hex: 0x007AFF),
         UIColor(hex: 0xFF9500),
@@ -61,6 +64,15 @@ class ViewController: UIViewController {
         setupPieChart()
     
         pieView.delegate = self
+
+        stackViewArray.append(donationStackView)
+        stackViewArray.append(entertainmentStackView)
+        stackViewArray.append(foodStackView)
+        stackViewArray.append(healthStackView)
+        stackViewArray.append(shoppingStackView)
+        stackViewArray.append(transportationStackView)
+        stackViewArray.append(utilitiesStackView)
+        stackViewArray.append(otherStackView)
         
         setCategoryStackView(stackView: donationStackView, colorHex: colors[0])
         setCategoryStackView(stackView: entertainmentStackView, colorHex: colors[1])
@@ -230,18 +242,49 @@ extension ViewController: ChartViewDelegate {
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         if let dataSet = chartView.data?.dataSets[ highlight.dataSetIndex] {
-               let sliceIndex: Int = dataSet.entryIndex( entry: entry)
-            print( "Selected slice index: \( sliceIndex.description)")
-            print("$ \( viewModel.categoryTotalPrice[sliceIndex])")
-            let selectedCategoryValue = viewModel.categoryTotalPrice[sliceIndex]
-            
-            let centerText = "$\(selectedCategoryValue)"
-            pieView.centerText = centerText
-            pieView.drawCenterTextEnabled = true
-            
-           }
+            let sliceIndex: Int = dataSet.entryIndex(entry: entry)
+                    print("Seçilen dilim indeksi: \(sliceIndex.description)")
+                    print("$ \(viewModel.categoryTotalPrice[sliceIndex])")
+                    let selectedCategoryValue = viewModel.categoryTotalPrice[sliceIndex]
+
+                    let centerText = "$\(selectedCategoryValue)"
+                    pieView.centerText = centerText
+                    pieView.drawCenterTextEnabled = true
+
+                    if let prevIndex = previousSelectedIndex {
+                        stackViewArray[prevIndex].backgroundColor = UIColor.clear
+                        stackViewArray[prevIndex].layer.borderColor = colors[prevIndex].cgColor
+                        stackViewArray[prevIndex].layer.borderWidth = 1
+//                        setCategoryStackView(stackView: stackViewArray[prevIndex], colorHex: colors[prevIndex])
+                    }
+
+                    stackViewArray[sliceIndex].backgroundColor = colors[sliceIndex]
+                    stackViewArray[sliceIndex].layer.borderColor = UIColor.black.cgColor
+                    stackViewArray[sliceIndex].layer.borderWidth = 2
+
+                    previousSelectedIndex = sliceIndex
+        }
 
     }
+    
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+        let totalPrice = viewModel.categoryTotalPrice
+        
+        let total = totalPrice.reduce(0, +)
+        let centerText = "$\(total)"
+        pieView.centerText = centerText
+        pieView.drawCenterTextEnabled = true
+        
+        
+        for index in 0...6{
+            stackViewArray[index].backgroundColor = UIColor.clear
+            stackViewArray[index].layer.borderColor = colors[index].cgColor
+            stackViewArray[index].layer.borderWidth = 1
+        }
+        
+        
+    }
+    
 }
 
 
