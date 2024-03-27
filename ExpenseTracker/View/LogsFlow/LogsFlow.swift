@@ -75,10 +75,7 @@ class LogsFlow: UIViewController {
         itemTableView.layer.borderWidth = 0.3
         itemTableView.layer.borderColor = UIColor.gray.cgColor
         
-        
-        
-        
-        
+
         
         print("Kategori Array :\(viewModel.categoryNameArray)")
         print(viewModel.priceArray)
@@ -87,6 +84,7 @@ class LogsFlow: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
+       
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
         
         viewModel.getAllData()
@@ -326,7 +324,8 @@ extension LogsFlow: UITableViewDelegate, UITableViewDataSource {
     
         if toDoSearchText == false{ // Search Bar Aktivitasyon
             if viewModel.filteredItemsArray.isEmpty  || filterProductName.isEmpty{ //Kategori seçilmediğinde ya da "All durumunda
-                cell.productLabelText.text = filterProductName[indexPath.row]
+//                cell.productLabelText.text = filterProductName[indexPath.row]
+                cell.productLabelText.text = viewModel.productNameArray[indexPath.row]
                 cell.priceLabelText.text = "$\(viewModel.priceArray[indexPath.row]).00"
                 cell.dateLabelText.text = "\(viewModel.dateArray[indexPath.row])"
                 

@@ -217,6 +217,11 @@ class EditExpenseLogFlow: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
         dismiss(animated: true, completion: nil)
         
+        //
+        NotificationCenter.default.post(name: NSNotification.Name("Deneme"), object: nil)
+        dismiss(animated: true,completion: nil)
+        
+        
         
     }
     

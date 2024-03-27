@@ -40,19 +40,21 @@ class ViewController: UIViewController {
     var selectedCategoryTotal: Double = 0.0
     
     var previousSelectedIndex: Int?
-    let colors: [UIColor] = [
-        UIColor(hex: 0x007AFF),
-        UIColor(hex: 0xFF9500),
-        UIColor(hex: 0x4CD964),
-        UIColor(hex: 0xFF2D55),
-        UIColor(hex: 0x5856D6),
-        UIColor(hex: 0xFFCC00),
-        UIColor(hex: 0x34C759),
-        UIColor(hex: 0xFF3B30)
-    ]
-    
     var viewModel = DashboardVM()
     var totalPrice = 0
+    
+    let colors: [UIColor] = [
+        UIColor(hex: 0xFF6F61),
+        UIColor(hex: 0x6B5B95),
+        UIColor(hex: 0x70C1B3),
+        UIColor(hex: 0xFFD166),
+        UIColor(hex: 0x7DBEA5),
+        UIColor(hex: 0xE5989B),
+        UIColor(hex: 0xB565A7),
+        UIColor(hex: 0xFFA600)
+    ]
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +64,9 @@ class ViewController: UIViewController {
         
         setTabBar()
         setupPieChart()
-    
+        
         pieView.delegate = self
-
+        
         stackViewArray.append(donationStackView)
         stackViewArray.append(entertainmentStackView)
         stackViewArray.append(foodStackView)
@@ -74,15 +76,10 @@ class ViewController: UIViewController {
         stackViewArray.append(utilitiesStackView)
         stackViewArray.append(otherStackView)
         
-        setCategoryStackView(stackView: donationStackView, colorHex: colors[0])
-        setCategoryStackView(stackView: entertainmentStackView, colorHex: colors[1])
-        setCategoryStackView(stackView: foodStackView, colorHex: colors[2])
-        setCategoryStackView(stackView: healthStackView, colorHex: colors[3])
-        setCategoryStackView(stackView: shoppingStackView, colorHex: colors[4])
-        setCategoryStackView(stackView: transportationStackView, colorHex: colors[5])
-        setCategoryStackView(stackView: utilitiesStackView, colorHex: colors[6])
-        setCategoryStackView(stackView: otherStackView, colorHex: colors[7])
-
+        for addIndex in 0...7 {
+            setCategoryStackView(stackView: stackViewArray[addIndex], colorHex: colors[addIndex])
+        }
+        
         
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor.gray.cgColor
@@ -92,30 +89,30 @@ class ViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-       //NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
-        //NotificationCenter.default.removeObserver("newData")
-        viewModel.getAllData()
-
-        //totalExpenditure()
+        super.viewWillAppear(animated)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("Deneme"), object: nil)
+        viewModel.getAllData()
+        getItemForUI()
+        pieView.animate(xAxisDuration: 2.0, easingOption: .easeOutBack)
     }
     @objc func getData(){
-            self.viewModel.getAllData()
-            //self.totalExpenditure()
+        self.viewModel.getAllData()
+        //self.totalExpenditure()
     }
     
     func calculateCategoryTotal(category: String, prices: [Int]) -> Double{
         let filteredPrices = prices.filter { $0 != 0 }
-            var total = 0
-            
-            for (index, categoryName) in viewModel.categoryNameArray.enumerated() {
-                if categoryName == category {
-                    total += filteredPrices[index]
-                }
+        var total = 0
+        
+        for (index, categoryName) in viewModel.categoryNameArray.enumerated() {
+            if categoryName == category {
+                total += filteredPrices[index]
             }
-            
+        }
+        
         return Double(total)
-
+        
     }
     
     func setTabBar(){
@@ -133,10 +130,7 @@ class ViewController: UIViewController {
         
     }
     
-    func setupPieChart(){
-        pieView.drawEntryLabelsEnabled = true
-        
-        
+    func getItemForUI(){
         var dataEntries: [ChartDataEntry] = []
         
         let donationTotal = calculateCategoryTotal(category: "Donation", prices: viewModel.priceArray)
@@ -163,7 +157,6 @@ class ViewController: UIViewController {
         let otherTotal = calculateCategoryTotal(category: "Other", prices: viewModel.priceArray)
         otherPriceLabel.text = otherTotal != 0 ? "$\(String(otherTotal))" : "$0"
         
-        //print(donationTotal+entertainmentTotal+foodTotal+healthTotal+shoppingTotal+transportationTotal+utilitiesTotal+otherTotal)
         
         let values: [Double] = [donationTotal,
                                 entertainmentTotal,
@@ -173,14 +166,13 @@ class ViewController: UIViewController {
                                 transportationTotal,
                                 utilitiesTotal,
                                 otherTotal]
-        
         viewModel.categoryTotalPrice = values
         print(values)
         print(viewModel.categoryTotalPrice)
         let total = values.reduce(0, +)
-        
         self.totalPriceLabel.text = "$\(total)"
-
+        configurePieChartCenterText(centerText: String(total))
+        
         print("total: \(total)")
         for (index, value) in values.enumerated() {
             let percentage = (value / total) * 100.0
@@ -206,33 +198,39 @@ class ViewController: UIViewController {
         numberFormatter.percentSymbol = " %"
         
         data.setValueFormatter(DefaultValueFormatter(formatter: numberFormatter))
-        
-       
+    }
+    
+    
+    func setupPieChart(){
+        pieView.drawEntryLabelsEnabled = true
         pieView.legend.enabled = false
         pieView.drawEntryLabelsEnabled = false
-        //pieView.drawHoleEnabled = false
-        //pieView.legend.enabled = false
-       
         pieView.drawHoleEnabled = true
         pieView.holeRadiusPercent = 0.4 // Deliğin yarıçapı, tam yüzde cinsinden (%50)
         pieView.holeColor = UIColor.white // Deliğin rengi
         
         let totalValue = calculateCategoryTotal(category: "Tüm Kategoriler", prices: viewModel.priceArray)
-        //let centerText = "Toplam: \(totalValue)"
-       // pieView.centerText = centerText
-        //pieView.drawCenterTextEnabled = true // Merkezdeki metni görünür hale getirir
+        
     }
     
     func totalExpenditure(){
         for index in viewModel.priceArray {
             if let intValue = index as? Int {
                 totalPrice += intValue
-//                totalPriceLabel.text = "$\(totalPrice).00"
+                //                totalPriceLabel.text = "$\(totalPrice).00"
             }
             DispatchQueue.main.async {
                 self.totalPriceLabel.text = "$\(self.totalPrice) "
             }
         }
+    }
+    
+    func configurePieChartCenterText(centerText: String){
+        pieView.drawCenterTextEnabled = true
+        let myAttribute = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17) ]
+        let myAttrString = NSAttributedString(string: String(centerText), attributes: myAttribute)
+        
+        pieView.centerAttributedText = myAttrString
     }
     
 }
@@ -243,46 +241,41 @@ extension ViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         if let dataSet = chartView.data?.dataSets[ highlight.dataSetIndex] {
             let sliceIndex: Int = dataSet.entryIndex(entry: entry)
-                    print("Seçilen dilim indeksi: \(sliceIndex.description)")
-                    print("$ \(viewModel.categoryTotalPrice[sliceIndex])")
-                    let selectedCategoryValue = viewModel.categoryTotalPrice[sliceIndex]
-
-                    let centerText = "$\(selectedCategoryValue)"
-                    pieView.centerText = centerText
-                    pieView.drawCenterTextEnabled = true
-
-                    if let prevIndex = previousSelectedIndex {
-                        stackViewArray[prevIndex].backgroundColor = UIColor.clear
-                        stackViewArray[prevIndex].layer.borderColor = colors[prevIndex].cgColor
-                        stackViewArray[prevIndex].layer.borderWidth = 1
-//                        setCategoryStackView(stackView: stackViewArray[prevIndex], colorHex: colors[prevIndex])
-                    }
-
-                    stackViewArray[sliceIndex].backgroundColor = colors[sliceIndex]
-                    stackViewArray[sliceIndex].layer.borderColor = UIColor.black.cgColor
-                    stackViewArray[sliceIndex].layer.borderWidth = 2
-
-                    previousSelectedIndex = sliceIndex
+            print("Seçilen dilim indeksi: \(sliceIndex.description)")
+            print("$ \(viewModel.categoryTotalPrice[sliceIndex])")
+            let selectedCategoryValue = viewModel.categoryTotalPrice[sliceIndex]
+            
+            let centerText = "$\(selectedCategoryValue)"
+            configurePieChartCenterText(centerText: centerText)
+            
+            if let prevIndex = previousSelectedIndex {
+                stackViewArray[prevIndex].backgroundColor = UIColor.clear
+                stackViewArray[prevIndex].layer.borderColor = colors[prevIndex].cgColor
+                stackViewArray[prevIndex].layer.borderWidth = 1
+                
+            }
+            
+            stackViewArray[sliceIndex].backgroundColor = colors[sliceIndex]
+            stackViewArray[sliceIndex].layer.borderColor = UIColor.black.cgColor
+            stackViewArray[sliceIndex].layer.borderWidth = 1
+            
+            previousSelectedIndex = sliceIndex
         }
-
+        
     }
     
     func chartValueNothingSelected(_ chartView: ChartViewBase) {
         let totalPrice = viewModel.categoryTotalPrice
         
         let total = totalPrice.reduce(0, +)
-        let centerText = "$\(total)"
-        pieView.centerText = centerText
-        pieView.drawCenterTextEnabled = true
         
+        configurePieChartCenterText(centerText: String(total))
         
         for index in 0...6{
             stackViewArray[index].backgroundColor = UIColor.clear
             stackViewArray[index].layer.borderColor = colors[index].cgColor
             stackViewArray[index].layer.borderWidth = 1
         }
-        
-        
     }
     
 }

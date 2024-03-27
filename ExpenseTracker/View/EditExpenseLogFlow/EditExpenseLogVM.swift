@@ -31,6 +31,7 @@ class EditExpenseLogVM {
             try context.save()
             print("Data Save Done")
             NotificationCenter.default.post(name: NSNotification.Name.init("newData"), object: nil)
+            
         } catch {
             print("Error")
         }
